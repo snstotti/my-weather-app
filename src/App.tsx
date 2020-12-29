@@ -39,7 +39,7 @@ useEffect(()=>{
           Температура воздуха: {temp}
         </p>
         <span>{description}</span>
-        <span>{}</span>
+        <span></span>
         <p>
           Ощущается как: {feels_like}
         </p>
