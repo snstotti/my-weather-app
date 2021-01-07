@@ -15,7 +15,7 @@ let dop = '@2x.png'
 
 export const getIconImage = {
     getI(i) {
-        return instanceIcon.get(i + dop).then(responce=>responce.request.responseURL)
+        return instanceIcon.get(`${i}@2x.png`).then(responce=>responce.request.responseURL)
     }
 }
 
@@ -28,6 +28,10 @@ export const getWeather = {
     getExtraData(city) {
         return instance.get(WEATHER_Q + city + API_KEY)
             .then(responce => responce.data.weather[0])
+    },
+    getImageTemp(image) {
+        return instanceIcon.get()
+            .then(responce => console.log(responce))
     }
 }
 

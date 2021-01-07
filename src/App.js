@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { getTemp, getData } from './components/weatherReducer/weatherReducer';
+import { getTemp,getExtraData, setLocality,getIconUrl } from './components/weatherReducer/weatherReducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import SearchForm from './components/searchForm/SearchForm';
 
 // let a :number | null = 2 //или
 // let b :Boolean = true 
@@ -15,26 +16,31 @@ import { connect } from 'react-redux';
 // let d :Array<string> = ['g','sds','uuf'] //массив строк
 
 
-function App(props:any) {
+function App(props) {
 
 
 
-const {getTemp,getData,temperature,extraData} = props
+  const { getTemp, temperature, extraData, setLocality,locality,getExtraData,getIconUrl,urlIcon } = props
 
-const {temp,feels_like,humidity} = temperature
-const {description} = extraData
+  const { temp, feels_like, humidity } = temperature
+  const { description, icon } = extraData
 
 
 
-useEffect(()=>{
-  getData('Тольятти')
-  getTemp('Тольятти')
-},[getTemp,getData])
-  
+  useEffect(() => {
+    getIconUrl(icon)
+    getExtraData(locality)
+    getTemp(locality)
+  }, [getTemp,getExtraData,getIconUrl,locality,icon])
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+        <SearchForm setLocality={setLocality} />
+        <img src={urlIcon} className="App-logo" alt="logo" />
+        <div>
+          {locality}
+        </div>
         <p>
           Температура воздуха: {temp}
         </p>
@@ -60,14 +66,16 @@ useEffect(()=>{
   );
 }
 
-const mapStateToProps=(state:any)=>{
+const mapStateToProps = (state) => {
   return {
+    locality: state.weatherReducer.locality,
     temperature: state.weatherReducer.temperature,
     extraData: state.weatherReducer.extraData,
+    urlIcon: state.weatherReducer.imageUrl,
   }
 }
 
 
 export default compose(
-  connect(mapStateToProps,{getTemp,getData})
+  connect(mapStateToProps, { getTemp,getExtraData,getIconUrl,  setLocality })
 )(App)
