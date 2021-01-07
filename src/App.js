@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import { getTemp,getExtraData, setLocality,getIconUrl } from './components/weatherReducer/weatherReducer';
+import { getTemp,getExtraData, setLocality,getIconUrl,getName } from './components/weatherReducer/weatherReducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import SearchForm from './components/searchForm/SearchForm';
@@ -20,26 +19,32 @@ function App(props) {
 
 
 
-  const { getTemp, temperature, extraData, setLocality,locality,getExtraData,getIconUrl,urlIcon } = props
+  const { getTemp, temperature, extraData, setLocality,locality,getExtraData,getIconUrl,urlIcon,getName,nameLocality } = props
 
   const { temp, feels_like, humidity } = temperature
   const { description, icon } = extraData
 
-
-
   useEffect(() => {
-    getIconUrl(icon)
     getExtraData(locality)
     getTemp(locality)
-  }, [getTemp,getExtraData,getIconUrl,locality,icon])
+    getName(locality)
+  }, [locality,getTemp,getExtraData,getName])
+
+  useEffect(()=>{
+    getIconUrl(icon)
+  },[getIconUrl,icon])
+
+  
+
+  let image = urlIcon ? <img src={urlIcon} className="App-logo" alt="logo" /> : '...Loading'
 
   return (
     <div className="App">
       <header className="App-header">
-        <SearchForm setLocality={setLocality} />
-        <img src={urlIcon} className="App-logo" alt="logo" />
+        <SearchForm setLocality={setLocality} locality={locality} />
+        {image}
         <div>
-          {locality}
+          {nameLocality}
         </div>
         <p>
           Температура воздуха: {temp}
@@ -72,10 +77,11 @@ const mapStateToProps = (state) => {
     temperature: state.weatherReducer.temperature,
     extraData: state.weatherReducer.extraData,
     urlIcon: state.weatherReducer.imageUrl,
+    nameLocality: state.weatherReducer.nameLocality,
   }
 }
 
 
 export default compose(
-  connect(mapStateToProps, { getTemp,getExtraData,getIconUrl,  setLocality })
+  connect(mapStateToProps, { getTemp,getExtraData,getIconUrl,  setLocality,getName })
 )(App)

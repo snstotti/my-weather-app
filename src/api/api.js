@@ -11,7 +11,7 @@ const instanceIcon = Axios.create({
     baseURL: `http://openweathermap.org/img/wn/`,
     responseType: "json"
 })
-let dop = '@2x.png'
+// let dop = '@2x.png'
 
 export const getIconImage = {
     getI(i) {
@@ -24,15 +24,19 @@ export const getWeather = {
     getTemp(city) {
         return instance.get(WEATHER_Q + city + API_KEY)
             .then(responce => responce.data.main)
+            .catch(e=>console.log(e))
+            // .then(responce=>console.log(responce))
     },
     getExtraData(city) {
         return instance.get(WEATHER_Q + city + API_KEY)
             .then(responce => responce.data.weather[0])
+            .catch((e)=>console.log(e,'errrooroor extra data'))
     },
-    getImageTemp(image) {
-        return instanceIcon.get()
-            .then(responce => console.log(responce))
+    getNameLocality(InputValue) {
+        return instance.get(WEATHER_Q + InputValue + API_KEY)
+            .then(responce => responce.data.name)
+            .catch((e)=>console.log(e,'errrooroor name'))
     }
 }
 
-getIconImage.getI("01n")
+
