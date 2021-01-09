@@ -5,13 +5,15 @@ const SET_EXTRA_DATA = 'SET_EXTRA_DATA'
 const SET_LCALITY = 'SET_LCALITY'
 const SET_URL_IMAGE = 'SET_URL_IMAGE'
 const SET_NAME_LOCALITY = 'SET_NAME_LOCALITY'
+const SET_ERROR = 'SET_ERROR'
 
 type TypeinitialState = {
     temperature: any,
     extraData: any,
     locality: any,
     imageUrl: string,
-    nameLocality: string
+    nameLocality: string,
+    onError:boolean
 }
 
 let initialState:TypeinitialState = {
@@ -19,7 +21,8 @@ let initialState:TypeinitialState = {
     extraData: {},
     locality: 'Тольятти',
     imageUrl: '',
-    nameLocality: ''
+    nameLocality: '',
+    onError: false
 }
 
 const weatherReducer =(state = initialState, action:any)=>{
@@ -56,6 +59,12 @@ const weatherReducer =(state = initialState, action:any)=>{
                 ...state, nameLocality : action.name
             }
         }
+        case SET_ERROR:{
+            
+            return {
+                ...state, onError : action.er
+            }
+        }
         
         default:
             return state
@@ -68,25 +77,34 @@ export const setExtraData = (objData:any) => ({ type: SET_EXTRA_DATA, objData})
 export const setLocality = (locality:any) => ({ type: SET_LCALITY, locality})
 export const setUrlImage = (url:any) => ({ type: SET_URL_IMAGE, url})
 export const setNameLocality = (name:any) => ({ type: SET_NAME_LOCALITY, name})
+export const errorProcessing = (er:boolean) => ({ type: SET_ERROR, er})
 
-
-export const getTemp = (city:any) => async(dispatch:any)=>{
-    let response = await getWeather.getTemp(city)
-    dispatch(getTempSuccess(response))
-}
+    
 export const getExtraData = (city:any) => async(dispatch:any)=>{
-    let response = await getWeather.getExtraData(city)
-    // console.log(response);
-    dispatch(setExtraData(response))
+    
+    try{
+        let response = await getWeather.getExtraData(city)
+        dispatch(setExtraData(response.weather[0]))
+        dispatch(setNameLocality(response.name))
+        dispatch(getTempSuccess(response.main))
+        dispatch(errorProcessing(false))
+    } catch(e){
+        dispatch(errorProcessing(true))
+        console.log('Нет такого города');
+        
+    }
+    
 }
-export const getName = (city:any) => async(dispatch:any)=>{
-    let response = await getWeather.getNameLocality(city)
-    // console.log(response);
-    dispatch(setNameLocality(response))
-}
+
 export const getIconUrl = (icon:any='01n') => async(dispatch:any)=>{
-    let response = await getIconImage.getI(icon)
-    dispatch(setUrlImage(response))
+    try{
+        let response = await getIconImage.getI(icon)
+        dispatch(setUrlImage(response))
+    } catch(e){
+        console.log('Нет картинки');
+        
+    }
+   
 }
 
 

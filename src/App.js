@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
-import { getTemp,getExtraData, setLocality,getIconUrl,getName } from './components/weatherReducer/weatherReducer';
+import { getExtraData, getIconUrl, setLocality } from './components/weatherReducer/weatherReducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import SearchForm from './components/searchForm/SearchForm';
@@ -19,32 +19,35 @@ function App(props) {
 
 
 
-  const { getTemp, temperature, extraData, setLocality,locality,getExtraData,getIconUrl,urlIcon,getName,nameLocality } = props
+  const {  temperature, extraData, setLocality,locality,getExtraData,getIconUrl,urlIcon,nameLocality,onError } = props
 
   const { temp, feels_like, humidity } = temperature
   const { description, icon } = extraData
 
   useEffect(() => {
-    getExtraData(locality)
-    getTemp(locality)
-    getName(locality)
-  }, [locality,getTemp,getExtraData,getName])
-
-  useEffect(()=>{
     getIconUrl(icon)
-  },[getIconUrl,icon])
+    getExtraData(locality)
+  }, [locality,getExtraData,icon,getIconUrl])
+
+  // useEffect(()=>{
+    
+  //   getIconUrl(icon)
+  // },[getIconUrl,icon])
 
   
 
   let image = urlIcon ? <img src={urlIcon} className="App-logo" alt="logo" /> : '...Loading'
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <SearchForm setLocality={setLocality} locality={locality} />
+    <div className="app">
+      <header className="app__header">
+        DATE
+      </header>
+      <main className="app__main">
+      <SearchForm setLocality={setLocality} locality={locality} />
         {image}
         <div>
-          {nameLocality}
+          {!onError ? nameLocality : 'Нет такого города'}
         </div>
         <p>
           Температура воздуха: {temp}
@@ -66,7 +69,9 @@ function App(props) {
         >
           Learn React
         </a>
-      </header>
+      </main>
+        
+      
     </div>
   );
 }
@@ -78,10 +83,11 @@ const mapStateToProps = (state) => {
     extraData: state.weatherReducer.extraData,
     urlIcon: state.weatherReducer.imageUrl,
     nameLocality: state.weatherReducer.nameLocality,
+    onError: state.weatherReducer.onError,
   }
 }
 
 
 export default compose(
-  connect(mapStateToProps, { getTemp,getExtraData,getIconUrl,  setLocality,getName })
+  connect(mapStateToProps, { getExtraData,getIconUrl, setLocality })
 )(App)
