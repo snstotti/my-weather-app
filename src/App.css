@@ -1,9 +1,13 @@
-.App {
-  text-align: center;
-  display: flex;
-  justify-content: center;
+body{
+  background: rgb(252,70,107);
+background: linear-gradient(0deg, rgba(252,70,107,1) 0%, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%);
 }
-
+.app {
+  /* text-align: center;
+  display: flex;
+  justify-content: center; */
+  
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -16,7 +20,8 @@
 }
 .app__main{
   max-width: 800px;
-  border: 1px solid black;
+  border-radius: 6px;
+  box-shadow: 0 0 12px 0 rgba(0,0,0,.2);
   margin: 20px auto;
   display: flex;
   flex-direction: column;
@@ -26,7 +31,7 @@
   color: black;
 }
 .app__header {
-  background-color: #282c34;
+  
   min-height: 50px;
   display: flex;
   flex-direction: column;

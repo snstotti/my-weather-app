@@ -15,7 +15,7 @@ function App(props) {
 
   const {  temperature, extraData, setLocality,locality,getExtraData,getIconUrl,urlIcon,nameLocality,onError } = props
 
-  const { temp, feels_like, humidity } = temperature
+  
   const { description, icon } = extraData
 
   useEffect(() => {
@@ -42,11 +42,8 @@ function App(props) {
             onError={onError}
             nameLocality={nameLocality}
             description={description}
-            feels_like={feels_like}
-            humidity={humidity}
-            temp={temp} />
-      
-        
+            temperature={temperature} />
+
       </main>
         
       

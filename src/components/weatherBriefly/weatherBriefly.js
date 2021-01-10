@@ -9,10 +9,10 @@ const WeatherBriefly = ({
     onError,
     nameLocality,
     description,
-    feels_like,
-    humidity,
-    temp
+    temperature
 }) => {
+
+    const { temp, feels_like, humidity,temp_min ,temp_max } = temperature
 
     let image = urlIcon ? <img src={urlIcon} className="" alt="" /> : '...Loading'
 
@@ -26,17 +26,17 @@ const WeatherBriefly = ({
         if (!num) {
             return num
         }
-        return Math.round(num)
+        return <>{Math.round(num)}&deg;</>
     }
 
     return (
-        <div style={{display:'flex', justifyContent:'space-around'}}>
+        <div style={{display:'flex', justifyContent:'space-around',width:800,}}>
             <div style={{width:400}}>
                 <p>Погода: {!onError && nameLocality}</p>
-                <h2>{numTemp(temp)}&deg;</h2>
+                <h2>{numTemp(temp)}</h2>
                 <span>{desc(description)}</span>
                 <p>
-                    Ощущается как: {numTemp(feels_like)}&deg;
+                    Ощущается как: {numTemp(feels_like)}
                 </p>
                 <p>
                     Влажность: {humidity}%
@@ -45,8 +45,9 @@ const WeatherBriefly = ({
 
 
 
-            <div style={{width:200}}>
+            <div>
                 {image}
+                <p style={{textAlign:'center'}}>{numTemp(temp_min)} / {numTemp(temp_max)}</p>
             </div>
 
 
