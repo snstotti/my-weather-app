@@ -4,15 +4,9 @@ import { getExtraData, getIconUrl, setLocality } from './components/weatherReduc
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import SearchForm from './components/searchForm/SearchForm';
+import WeatherBriefly from './components/weatherBriefly/weatherBriefly';
 
-// let a :number | null = 2 //или
-// let b :Boolean = true 
-// let c :string = 'string'
 
-// let gender : 'man' | 'woman' 
-// gender = 'man' //строка как тип
-
-// let d :Array<string> = ['g','sds','uuf'] //массив строк
 
 
 function App(props) {
@@ -29,46 +23,30 @@ function App(props) {
     getExtraData(locality)
   }, [locality,getExtraData,icon,getIconUrl])
 
-  // useEffect(()=>{
-    
-  //   getIconUrl(icon)
-  // },[getIconUrl,icon])
+ 
 
   
 
-  let image = urlIcon ? <img src={urlIcon} className="App-logo" alt="logo" /> : '...Loading'
+  
 
   return (
     <div className="app">
       <header className="app__header">
         DATE
       </header>
+      
       <main className="app__main">
       <SearchForm setLocality={setLocality} locality={locality} />
-        {image}
-        <div>
-          {!onError ? nameLocality : 'Нет такого города'}
-        </div>
-        <p>
-          Температура воздуха: {temp}
-        </p>
-        <span>{description}</span>
-        <span></span>
-        <p>
-          Ощущается как: {feels_like}
-        </p>
-        <p>
-          Влажность: {humidity}%
-        </p>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          <WeatherBriefly 
+            urlIcon={urlIcon}
+            onError={onError}
+            nameLocality={nameLocality}
+            description={description}
+            feels_like={feels_like}
+            humidity={humidity}
+            temp={temp} />
+      
+        
       </main>
         
       
