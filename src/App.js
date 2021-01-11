@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { getExtraData, getIconUrl, setLocality } from './components/weatherReducer/weatherReducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';

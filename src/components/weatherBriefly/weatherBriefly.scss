@@ -1,0 +1,31 @@
+.weather-breafly{
+
+    display: flex;
+    justify-content: space-around;
+    width: 800px;
+    color: white;
+
+    &__card{
+        width: 400px
+    }
+    // &__title{
+
+    // }
+    &__degree{
+        font-family: 'PT Sans';
+        font-weight: 700;
+        font-size: 24px;
+    }
+    // &__feels-like{
+        
+    // }
+    // &__description{
+
+    // }
+    // &__humidity{
+
+    // }
+    // &__icon{
+
+    // }
+}

@@ -14,7 +14,9 @@ const WeatherBriefly = ({
 
     const { temp, feels_like, humidity,temp_min ,temp_max } = temperature
 
-    let image = urlIcon ? <img src={urlIcon} className="" alt="" /> : '...Loading'
+    let icon = <img src={urlIcon} className="weather-breafly__icon" alt="icon weather" /> 
+    
+    let image = urlIcon ? icon : '...Loading'
 
     const desc = text => {
         if (!text) {
@@ -30,15 +32,18 @@ const WeatherBriefly = ({
     }
 
     return (
-        <div style={{display:'flex', justifyContent:'space-around',width:800,}}>
-            <div style={{width:400}}>
-                <p>Погода: {!onError && nameLocality}</p>
-                <h2>{numTemp(temp)}</h2>
-                <span>{desc(description)}</span>
-                <p>
+        <div className='weather-breafly'>
+            <div className='weather-breafly__card'>
+                <p className='weather-breafly__title'>
+                    Погода: {!onError && nameLocality}
+                </p>
+                <h2 className='weather-breafly__degree'>{numTemp(temp)}</h2>
+                <p className='weather-breafly__feels-like'>
                     Ощущается как: {numTemp(feels_like)}
                 </p>
-                <p>
+                <span className='weather-breafly__description'>{desc(description)}</span>
+                
+                <p className='weather-breafly__humidity'>
                     Влажность: {humidity}%
                 </p>
             </div>
