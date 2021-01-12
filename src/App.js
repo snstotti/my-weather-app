@@ -36,14 +36,14 @@ function App(props) {
       </header>
       
       <main className="app__main">
-      <SearchForm setLocality={setLocality} locality={locality} />
-          <WeatherBriefly 
-            urlIcon={urlIcon}
-            onError={onError}
-            nameLocality={nameLocality}
-            description={description}
-            temperature={temperature} />
+        <SearchForm setLocality={setLocality} locality={locality} />
 
+        <WeatherBriefly
+          urlIcon={urlIcon}
+          onError={onError}
+          nameLocality={nameLocality}
+          description={description}
+          temperature={temperature} />
       </main>
         
       

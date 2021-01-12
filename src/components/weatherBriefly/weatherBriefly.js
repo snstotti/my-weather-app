@@ -1,7 +1,7 @@
 import React from 'react';
-
+import './weatherBriefly.scss'
 import { Input } from 'antd';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 
 
 const WeatherBriefly = ({
@@ -52,7 +52,7 @@ const WeatherBriefly = ({
 
             <div>
                 {image}
-                <p style={{textAlign:'center'}}>{numTemp(temp_min)} / {numTemp(temp_max)}</p>
+                <p className='weather-breafly__range'>{numTemp(temp_min)} / {numTemp(temp_max)}</p>
             </div>
 
 

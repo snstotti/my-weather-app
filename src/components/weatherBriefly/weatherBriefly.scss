@@ -1,31 +1,54 @@
+%norm{
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+
 .weather-breafly{
 
+   
+    
     display: flex;
-    justify-content: space-around;
-    width: 800px;
+    justify-content: space-between;
+    width: 100%;
     color: white;
+    border-radius: 6px;
+    box-shadow: 0 0 12px 0 rgba(0,0,0,.2);
+    margin-bottom: 40px;
 
     &__card{
-        width: 400px
+        width: 400px;
+        padding: 20px  20px 0 20px;
     }
-    // &__title{
-
-    // }
-    &__degree{
-        font-family: 'PT Sans';
-        font-weight: 700;
-        font-size: 24px;
+    &__title{
+        @extend %norm;
     }
-    // &__feels-like{
         
-    // }
-    // &__description{
-
-    // }
+    &__feels-like{
+        @extend %norm;
+    }
+    &__description{
+        font-size: 21px;
+    }
     // &__humidity{
 
     // }
     // &__icon{
 
     // }
+    
+    &__degree{
+        color: #fff;
+        font-family: 'PT Sans';
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 45px;
+        margin-bottom: 20px;
+    }   
+
+    &__range{
+        text-align: center;
+        @extend %norm;
+    }
+   
 }

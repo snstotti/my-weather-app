@@ -25,26 +25,22 @@
 }
 
 body{
-
-  /* pt-sans-700 - latin_cyrillic */
   font-family: 'PT Sans';
-  
+  font-weight: 400;
   background: rgb(252,70,107);
   background: linear-gradient(0deg, rgba(252,70,107,1) 0%, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%);
+  background-attachment:fixed;
+  background-position:100%;
 }
 .app {
-
+  margin: 20px auto;
+  max-width: 800px;
   &__main{
-    max-width: 800px;
-    border-radius: 6px;
-    box-shadow: 0 0 12px 0 rgba(0,0,0,.2);
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: black;
+    
+    position: relative;
+   
+   
+   
   }
   
 }
