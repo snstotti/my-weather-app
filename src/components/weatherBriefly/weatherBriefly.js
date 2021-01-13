@@ -41,7 +41,7 @@ const WeatherBriefly = ({
                 <p className='weather-breafly__feels-like'>
                     Ощущается как: {numTemp(feels_like)}
                 </p>
-                <span className='weather-breafly__description'>{desc(description)}</span>
+                
                 
                 <p className='weather-breafly__humidity'>
                     Влажность: {humidity}%
@@ -50,9 +50,10 @@ const WeatherBriefly = ({
 
 
 
-            <div>
+            <div className='weather-breafly__icon-block'>
                 {image}
-                <p className='weather-breafly__range'>{numTemp(temp_min)} / {numTemp(temp_max)}</p>
+                <span className='weather-breafly__description'>{desc(description)}</span>
+                {/* <p className='weather-breafly__range'>{numTemp(temp_min)} / {numTemp(temp_max)}</p> */}
             </div>
 
 

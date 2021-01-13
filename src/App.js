@@ -25,14 +25,19 @@ function App(props) {
 
  
 
-  
+  // текущая дата
+let date = new Date();
+
+// час в вашем текущем часовом поясе
+let hours = date.toLocaleTimeString()
+
 
   
 
   return (
     <div className="app">
       <header className="app__header">
-        DATE
+        DATE {hours}
       </header>
       
       <main className="app__main">
