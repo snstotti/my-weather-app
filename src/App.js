@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import './App.scss';
-import { getExtraData, getIconUrl, setLocality } from './components/weatherReducer/weatherReducer';
+import { getExtraData, getIconUrl, setLocality, getDailyWeather } from './components/weatherReducer/weatherReducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import SearchForm from './components/searchForm/SearchForm';
 import WeatherBriefly from './components/weatherBriefly/weatherBriefly';
+
 
 
 
@@ -14,16 +15,21 @@ function App(props) {
 
 
   const {  temperature, extraData, setLocality,locality,getExtraData,getIconUrl,urlIcon,nameLocality,onError } = props
-
+  const {getDailyWeather, coordinates} = props
   
   const { description, icon } = extraData
-
+  const {lat,lon}=coordinates
+ 
   useEffect(() => {
     getIconUrl(icon)
     getExtraData(locality)
   }, [locality,getExtraData,icon,getIconUrl])
-
  
+console.log(new Date(1610697600*1000));
+
+  useEffect(()=>{
+    getDailyWeather(lat,lon)
+  },[getDailyWeather,lat,lon])
 
   // текущая дата
 let date = new Date();
@@ -63,11 +69,12 @@ const mapStateToProps = (state) => {
     extraData: state.weatherReducer.extraData,
     urlIcon: state.weatherReducer.imageUrl,
     nameLocality: state.weatherReducer.nameLocality,
+    coordinates: state.weatherReducer.coordinates,
     onError: state.weatherReducer.onError,
   }
 }
 
 
 export default compose(
-  connect(mapStateToProps, { getExtraData,getIconUrl, setLocality })
+  connect(mapStateToProps, { getExtraData,getIconUrl, setLocality, getDailyWeather })
 )(App)
