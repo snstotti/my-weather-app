@@ -1,5 +1,6 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
+import weatherDailyReducer from '../weatherReducer/weatherDailyReducer';
 import  weatherReducer  from '../weatherReducer/weatherReducer'
 
 declare global {
@@ -9,7 +10,8 @@ declare global {
   }
 
 let reducer = combineReducers({
-  weatherReducer: weatherReducer
+  weatherReducer: weatherReducer,
+  weatherDailyReducer: weatherDailyReducer
 })
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

@@ -1,4 +1,4 @@
-import {getWeather,getIconImage, getWeatherDaily} from '../../api/api'
+import {getWeather,getIconImage } from '../../api/api'
 
 const SET_TEMP = 'SET_TEMP'
 const SET_EXTRA_DATA = 'SET_EXTRA_DATA'
@@ -8,6 +8,7 @@ const SET_NAME_LOCALITY = 'SET_NAME_LOCALITY'
 const SET_COORDINATES = 'SET_COORDINATES'
 const SET_ERROR = 'SET_ERROR'
 
+
 type TypeinitialState = {
     temperature: any,
     extraData: any,
@@ -15,7 +16,7 @@ type TypeinitialState = {
     imageUrl: string,
     nameLocality: string,
     onError:boolean,
-    coordinates:object
+    coordinates:{}
 }
 
 let initialState:TypeinitialState = {
@@ -26,6 +27,7 @@ let initialState:TypeinitialState = {
     nameLocality: '',
     onError: false,
     coordinates: {}
+    
 }
 
 const weatherReducer =(state = initialState, action:any)=>{
@@ -68,12 +70,14 @@ const weatherReducer =(state = initialState, action:any)=>{
                 ...state, coordinates : action.obj
             }
         }
+        
         case SET_ERROR:{
             
             return {
                 ...state, onError : action.er
             }
         }
+        
         
         default:
             return state
@@ -88,6 +92,7 @@ export const setUrlImage = (url:any) => ({ type: SET_URL_IMAGE, url})
 export const setNameLocality = (name:any) => ({ type: SET_NAME_LOCALITY, name})
 export const getCoordinates = (obj:any) => ({ type: SET_COORDINATES, obj})
 export const errorProcessing = (er:boolean) => ({ type: SET_ERROR, er})
+
 
     
 export const getExtraData = (city:any) => async(dispatch:any)=>{
@@ -112,24 +117,13 @@ export const getIconUrl = (icon:any='01n') => async(dispatch:any)=>{
         let response = await getIconImage.getI(icon)
         dispatch(setUrlImage(response))
     } catch(e){
-        console.log('Нет картинки');
+        
+        console.log('Нет Иконки');
         
     }
    
 }
-export const getDailyWeather = (lat:string, lon:string) => async(dispatch:any)=>{
-    
-    try{
-        let response = await getWeatherDaily.getDailyData(lat, lon)
-        console.log(response);
-        
-        // dispatch(setUrlImage(response))
-    } catch(e){
-        console.log('Нет картинки');
-        
-    }
-   
-}
+
 
 
  

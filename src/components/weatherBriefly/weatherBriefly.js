@@ -1,7 +1,12 @@
 import React from 'react';
 import './weatherBriefly.scss'
-import { Input } from 'antd';
-// import 'antd/dist/antd.css';
+
+export const numTemp = num => {
+    if (!num) {
+        return num
+    }
+    return <>{Math.round(num)}&deg;</>
+}
 
 
 const WeatherBriefly = ({
@@ -9,10 +14,11 @@ const WeatherBriefly = ({
     onError,
     nameLocality,
     description,
-    temperature
+    temperature,
+    
 }) => {
 
-    const { temp, feels_like, humidity,temp_min ,temp_max } = temperature
+    const { temp, feels_like, humidity} = temperature
 
     let icon = <img src={urlIcon} className="weather-breafly__icon" alt="icon weather" /> 
     
@@ -24,12 +30,7 @@ const WeatherBriefly = ({
         }
         return text[0].toUpperCase() + text.slice(1)
     }
-    const numTemp = num => {
-        if (!num) {
-            return num
-        }
-        return <>{Math.round(num)}&deg;</>
-    }
+    
 
     return (
         <div className='weather-breafly'>
