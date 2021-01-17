@@ -9,25 +9,41 @@ const WeatherDaily= ({
     onLoading,
     dailyTemp,
     urlIcon,
-    humidity
+    humidity,
+    iconMorn
 }) => {
 
     
 
-    const {morn,eve} =dailyTemp
+    const {morn,day,eve,night} =dailyTemp
 
     
-
+    
    
     return (
         <div className='weather-daily'>
             <h2>Прогноз на сегодня: Props</h2>
             <div className='weather-daily__card'>
                 <WeatherColumn 
+                    title={'Утро'}
                     humidity={humidity}
                     temp={numTemp(morn)}
-                    eve={eve}
-                    urlIcon={urlIcon} />
+                    urlIcon={iconMorn[0]} />
+                <WeatherColumn 
+                    title={'День'}
+                    humidity={humidity}
+                    temp={numTemp(day)}
+                    urlIcon={iconMorn[1]} />
+                <WeatherColumn 
+                    title={'Вечер'}
+                    humidity={humidity}
+                    temp={numTemp(eve)}
+                    urlIcon={iconMorn[2]} />
+                <WeatherColumn 
+                    title={'Ночь'}
+                    humidity={humidity}
+                    temp={numTemp(night)}
+                    urlIcon={iconMorn[3]} />
             </div>
             
         </div>

@@ -6,4 +6,8 @@
     margin-bottom: 40px;
     background-color: #fff;
     opacity: 0.5;
+    &__card{
+        display: flex;
+        justify-content: space-around;
+    }
 }
