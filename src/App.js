@@ -24,12 +24,19 @@ function App(props) {
  
 
  
-console.log(new Date(1610964000*1000));
 
 
+  const hour = (dates) =>{
+    let d = new Date(dates * 1000)
+    return `${d.getDate()}${d.getHours()}` 
+}
+
+let day = `${new Date().getDate()}8`
+
+console.log(day);
   // текущая дата
-// let date = new Date();
-
+// let date = new Date(1610956800);
+// console.log(date.getHours())
 // час в вашем текущем часовом поясе
 // let hours = date.toLocaleTimeString()
 

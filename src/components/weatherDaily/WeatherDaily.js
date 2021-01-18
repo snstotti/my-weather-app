@@ -7,43 +7,30 @@ import {numTemp} from '../weatherBriefly/weatherBriefly'
 
 const WeatherDaily= ({
     onLoading,
-    dailyTemp,
-    urlIcon,
-    humidity,
+   
     iconMorn
 }) => {
 
     
 
-    const {morn,day,eve,night} =dailyTemp
+    
 
     
-    
+    const column = iconMorn.map(el=>{
+        return(
+            <WeatherColumn 
+                    title={el.title}
+                    humidity={el.humidity}
+                    temp={numTemp(el.temp)}
+                    urlIcon={el.icon} />
+        )
+    })
    
     return (
         <div className='weather-daily'>
             <h2>Прогноз на сегодня: Props</h2>
             <div className='weather-daily__card'>
-                <WeatherColumn 
-                    title={'Утро'}
-                    humidity={humidity}
-                    temp={numTemp(morn)}
-                    urlIcon={iconMorn[0]} />
-                <WeatherColumn 
-                    title={'День'}
-                    humidity={humidity}
-                    temp={numTemp(day)}
-                    urlIcon={iconMorn[1]} />
-                <WeatherColumn 
-                    title={'Вечер'}
-                    humidity={humidity}
-                    temp={numTemp(eve)}
-                    urlIcon={iconMorn[2]} />
-                <WeatherColumn 
-                    title={'Ночь'}
-                    humidity={humidity}
-                    temp={numTemp(night)}
-                    urlIcon={iconMorn[3]} />
+                {column}
             </div>
             
         </div>

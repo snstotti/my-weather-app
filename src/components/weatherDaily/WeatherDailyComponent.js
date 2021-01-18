@@ -17,7 +17,6 @@ const WeatherDailyComponent=({
     iconMorn
 })=> {
 
-   const {humidity} =temperature
     const {lat,lon}=coordinates
 
     useEffect(()=>{
@@ -32,10 +31,7 @@ const WeatherDailyComponent=({
       
         <WeatherDaily
           iconMorn={iconMorn}
-          humidity={humidity}
-          dailyTemp={dailyTemp}
-          onLoading={onLoading}
-          urlIcon={urlIcon}
+         
            />
             
       
