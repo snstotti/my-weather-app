@@ -30,8 +30,8 @@ const WeatherDailyComponent=({
     <div >
       
         <WeatherDaily
-          iconMorn={iconMorn}
-         
+          dailyTemp={dailyTemp}
+          hourlyTemp={hourlyTemp}
            />
             
       

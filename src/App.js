@@ -26,14 +26,20 @@ function App(props) {
  
 
 
-  const hour = (dates) =>{
-    let d = new Date(dates * 1000)
-    return `${d.getDate()}${d.getHours()}` 
+
+
+const hour = (dates) =>{
+  let d = new Date(dates * 1000)
+  return `${d.getDate()}${d.getDay()}${d.getHours()}` 
 }
 
-let day = `${new Date().getDate()}8`
+const dates = (num)=>{
+  let d = new Date()
+  return `${d.getDate()}${d.getDay()}${num}`
+}
 
-console.log(day);
+
+console.log(hour(1611064800)===dates(17));
   // текущая дата
 // let date = new Date(1610956800);
 // console.log(date.getHours())

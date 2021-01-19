@@ -6,9 +6,7 @@ import {numTemp} from '../weatherBriefly/weatherBriefly'
 
 
 const WeatherDaily= ({
-    onLoading,
-   
-    iconMorn
+    dailyTemp
 }) => {
 
     
@@ -16,7 +14,7 @@ const WeatherDaily= ({
     
 
     
-    const column = iconMorn.map(el=>{
+    const column = dailyTemp.map(el=>{
         return(
             <WeatherColumn 
                     title={el.title}
