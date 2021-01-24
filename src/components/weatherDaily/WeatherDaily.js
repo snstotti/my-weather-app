@@ -6,29 +6,63 @@ import {numTemp} from '../weatherBriefly/weatherBriefly'
 
 
 const WeatherDaily= ({
-    dailyTemp
+    weatherByTime,nameLocality,dailyTemp,temperature
 }) => {
 
     
-
-    
-
-    
-    const column = dailyTemp.map(el=>{
-        return(
-            <WeatherColumn 
-                    title={el.title}
-                    humidity={el.humidity}
-                    temp={numTemp(el.temp)}
-                    urlIcon={el.icon} />
-        )
-    })
    
+    
+    
+
+    // const {humidity}=temperature
+    // const {morn,day,eve,night} = dailyTemp
+    // const {m,d,e,nig} = weatherByTime
+    
+    // if(!weatherByTime){return '...Loading'}
+
+    // const weatherHelper =(title,temp,humidity,urlIcon,pop)=>{
+
+    //     return(
+    //         <WeatherColumn 
+    //             title={title}
+    //             temp={numTemp(temp)}
+    //             humidity={humidity}
+    //             urlIcon={urlIcon}
+    //             pop={pop} />
+    //     )
+    // }
+
+    // let morningColumn = weatherHelper('Утро',morn,humidity,m.weather[0].icon,0)
+    // let nightColumn = weatherHelper('Ночь',night,humidity,nig,0.10)
+     
+    
+    // const column = hourlyTemp.map((el)=>{
+    //     let newTitle
+    //     let d = new Date(el.dt*1000)
+    //     let curentHours = d.getHours()
+    //     if(curentHours >= 6 && curentHours < 11){newTitle = 'Утро'}
+    //     if(curentHours >= 11 && curentHours < 16){newTitle = 'День'}
+    //     if(curentHours > 16 && curentHours < 20){newTitle = 'Вечер'}
+    //     if(curentHours > 21 ){newTitle = 'Ночь'}
+
+    //     return(
+            
+    //         <WeatherColumn 
+    //             key={el.dt}
+                
+    //             title={newTitle}
+    //             humidity={el.humidity}
+    //             temp={numTemp(el.temp)}
+    //             urlIcon={el.weather[0].icon}
+    //             pop={el.pop} />
+    //     )
+    // })
+
     return (
         <div className='weather-daily'>
-            <h2>Прогноз на сегодня: Props</h2>
+            <h2>Прогноз на сегодня: {nameLocality}</h2>
             <div className='weather-daily__card'>
-                {column}
+                {/* {nightColumn} */}
             </div>
             
         </div>

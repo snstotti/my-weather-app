@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import SearchForm from './components/searchForm/SearchForm';
 import WeatherBrieflyComponent from './components/weatherBriefly/WeatherBrieflyComponent';
 import WeatherDailyComponent from './components/weatherDaily/WeatherDailyComponent';
+// import { hot } from 'react-hot-loader'
 
 
 
@@ -17,36 +18,7 @@ function App(props) {
 
 
   const {   setLocality,locality, } = props
- 
-  
-  
 
- 
-
- 
-
-
-
-
-const hour = (dates) =>{
-  let d = new Date(dates * 1000)
-  return `${d.getDate()}${d.getDay()}${d.getHours()}` 
-}
-
-const dates = (num)=>{
-  let d = new Date()
-  return `${d.getDate()}${d.getDay()}${num}`
-}
-
-
-console.log(hour(1611064800)===dates(17));
-  // текущая дата
-// let date = new Date(1610956800);
-// console.log(date.getHours())
-// час в вашем текущем часовом поясе
-// let hours = date.toLocaleTimeString()
-
-// setInterval(hours,2000)
   
 
   return (
@@ -78,5 +50,6 @@ const mapStateToProps = (state) => {
 
 
 export default compose(
+  
   connect(mapStateToProps, { setLocality })
 )(App)

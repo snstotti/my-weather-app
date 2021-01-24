@@ -13,25 +13,30 @@ const WeatherDailyComponent=({
     dailyTemp,
     urlIcon,
     temperature,
-    hourlyTemp,
-    iconMorn
+    weatherByTime,
+    hourly,
+    nameLocality
 })=> {
 
     const {lat,lon}=coordinates
+    
+    
 
     useEffect(()=>{
         getDailyWeather(lat,lon)
       },[getDailyWeather,lat,lon])
       
 
-    // console.log(1610953200);
+      console.log(weatherByTime);
  
   return (
     <div >
-      
+        
         <WeatherDaily
+          temperature={temperature}
           dailyTemp={dailyTemp}
-          hourlyTemp={hourlyTemp}
+          weatherByTime={weatherByTime}
+          nameLocality={nameLocality}
            />
             
       
@@ -48,7 +53,8 @@ const mapStateToProps = (state) => {
     urlIcon: state.weatherReducer.imageUrl,
     temperature: state.weatherReducer.temperature,
     hourlyTemp: state.weatherDailyReducer.hourlyTemp,
-    iconMorn: state.weatherDailyReducer.iconMorn,
+    weatherByTime: state.weatherDailyReducer.weatherByTime,
+    nameLocality: state.weatherReducer.nameLocality
   }
 }
 

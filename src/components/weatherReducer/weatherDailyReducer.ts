@@ -11,17 +11,19 @@ const SET_ICON_MORN = 'SET_ICON_MORN'
 
 type TypeinitialState = {
     onLoading:boolean,
-    dailyTemp:[],
+    dailyTemp:{},
+    pop:{},
     hourlyTemp:[],
-    iconMorn:[],
+    weatherByTime:any
     
 }
 
 let initialState:TypeinitialState = {
     onLoading: false,
-    dailyTemp:[],
+    dailyTemp:{},
+    pop:{},
     hourlyTemp:[],
-    iconMorn:[],
+    weatherByTime:{m:'',d:'',e:'',n:''}
 }
 
 const weatherDailyReducer =(state = initialState, action:any)=>{
@@ -36,21 +38,36 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
        
         
         case SET_TEMP_DAILY:{
-            let obj = {icon:action.icon,title:action.title,pop:action.pop}
+           
             return {
-                ...state, dailyTemp : [...state.dailyTemp, obj]
+                ...state, dailyTemp : action.temp ,pop: action.pop
             }
         } 
         case SET_TEMP_HOURLY:{
             return {
-                ...state, hourlyTemp : action.temp
+                ...state, hourlyTemp : action.arr
             }
         } 
         case SET_ICON_MORN:{
-                let obj =  {icon:action.iconMorn, temp:action.temp, title:action.title, humidity:action.humidity }
+                let hourlyWeather = action.icon.map((el:any)=>{
+                    let date = new Date()
+                    let dateWeather:any = new Date(el.dt*1000)
+                    let dateFromRequest = `${dateWeather.getDay()}${dateWeather.getDate()}${dateWeather.getHours()}`
+                    const curentDate =(num:any)=>{
+                        return`${date.getDay()}${date.getDate()}${num}`
+                    }
+                    let time = state.weatherByTime
+                    let icon = el.weather[0].icon 
+                    if(dateFromRequest === curentDate(6)){return time.m = icon}
+                    if(dateFromRequest === curentDate(11)){return time.d = icon}
+                    if(dateFromRequest === curentDate(17)){return time.e = icon}
+                    if(dateFromRequest === curentDate(22)){return time.n = icon}
+                    return null
+                })
+                 
             return {
                 ...state,
-                 iconMorn : [...state.iconMorn, obj]
+                weatherByTime:[...state.weatherByTime, ...hourlyWeather.filter((elem:any)=>elem)]
             }
         } 
     
@@ -62,9 +79,9 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
 }
 
 export const loadingProcessing = (load:boolean) => ({ type: SET_LOADING, load})
-export const getDailyWeathe = (icon:string,title:any,pop:any) => ({ type: SET_TEMP_DAILY, icon,title,pop})
-export const getHourlyWeathe = (temp:any) => ({ type: SET_TEMP_HOURLY, temp})
-export const setMornWeathe = (iconMorn:string,temp:any,title:string,humidity:any,) => ({ type: SET_ICON_MORN, iconMorn,temp,title,humidity})
+export const getDailyWeathe = (temp:any,pop:any) => ({ type: SET_TEMP_DAILY, temp,pop})
+export const getHourlyWeathe = (arr:any) => ({ type: SET_TEMP_HOURLY, arr})
+export const setMornWeathe = (icon:any) => ({ type: SET_ICON_MORN, icon})
 
 
 
@@ -74,15 +91,37 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
     try{
         let response = await getWeatherDaily.getDailyData(lat, lon)
         console.log(response);
+        
         let base = response.daily[0]
-        let title = [{title:"Утро"},{title:"День"},{title:"Вечер"},{title:"Ночь"}]
-        let bas = title.map((e:any)=>Object.assign({}, e, base.temp))
+        
+        dispatch(getDailyWeathe(base.temp,base.pop))
+        dispatch(setMornWeathe(response.hourly))
+        
+
         // dispatch(getDailyWeathe(base.weather[0].icon,title,base.pop))
-        dispatch(getHourlyWeathe(bas))
+        dispatch(getHourlyWeathe(base))
       
         
         // dispatch(getHourlyWeathe(response.hourly))
         dispatch(loadingProcessing(false))
+        
+        // let iconWeather = response.hourly.map((el:any)=>{
+        //     let date = new Date()
+        //     let dateWeather:any = el.dt*1000
+            
+        //     let curentDate = `${date.getDay()}${date.getDate()}`
+        //     let dateFromRequest = `${dateWeather.getDay()}${dateWeather.getDate()}`
+            
+        //     return `${dateFromRequest}/${curentDate}`
+        //     // if(curentDate === dateFromRequest){
+        //     //    return 'Yaaahuuuuu'
+        //     // }
+        //     // return 'fuck'
+        // })
+        
+        
+        
+       
         
     } catch(e){
         dispatch(loadingProcessing(true))

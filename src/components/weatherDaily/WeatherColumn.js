@@ -5,10 +5,10 @@ import './weatherColumn.scss'
 
 
 const WeatherColumn= ({
-    temp,humidity,urlIcon,title
+    temp,humidity,urlIcon,title,pop
 }) => {
-
-    
+    console.log(urlIcon);
+    if(!urlIcon){return 'bad'}
 
     
 let iconUrl = `http://openweathermap.org/img/wn/${urlIcon}@2x.png`
@@ -22,15 +22,19 @@ let iconUrl = `http://openweathermap.org/img/wn/${urlIcon}@2x.png`
                     <p >{title}</p>
                 </div>
                 <div className='weather-column__value'>
-                    <p >{temp}</p>
+                    <p >Средняя температура {temp}</p>
                 </div>
                 
                 <div className='weather-column__icon'>
                     <img src={iconUrl} alt='icon'/>
                 </div>
 
+                <div className='weather-column__pop'>
+                    <p>Вероятность осадков {pop*100}%</p>
+                </div>
+
                 <div className='weather-column__humidity'>
-                    <p >{humidity}%</p>
+                    <p >Влажность {humidity}%</p>
                 </div>
                 
             </div>

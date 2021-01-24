@@ -1,5 +1,6 @@
 import { combineReducers, createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
+
 import weatherDailyReducer from '../weatherReducer/weatherDailyReducer';
 import  weatherReducer  from '../weatherReducer/weatherReducer'
 
