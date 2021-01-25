@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { getDailyWeather } from '../weatherReducer/weatherDailyReducer';
+import { getDailyWeather,imageDailyWeather } from '../weatherReducer/weatherDailyReducer';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import WeatherDaily from './WeatherDaily';
@@ -14,25 +14,28 @@ const WeatherDailyComponent=({
     urlIcon,
     temperature,
     weatherByTime,
-    hourly,
-    nameLocality
+    nameLocality,
+    imageDailyWeather,
+    extraDataDaily,
+    iconDailyUrl
 })=> {
 
     const {lat,lon}=coordinates
+    const {icon}=extraDataDaily
     
     
 
     useEffect(()=>{
         getDailyWeather(lat,lon)
-      },[getDailyWeather,lat,lon])
+        imageDailyWeather(icon)
+      },[getDailyWeather,lat,lon,imageDailyWeather,icon])
       
-
-      console.log(weatherByTime);
  
   return (
     <div >
         
         <WeatherDaily
+          iconUrl={iconDailyUrl}
           temperature={temperature}
           dailyTemp={dailyTemp}
           weatherByTime={weatherByTime}
@@ -54,11 +57,13 @@ const mapStateToProps = (state) => {
     temperature: state.weatherReducer.temperature,
     hourlyTemp: state.weatherDailyReducer.hourlyTemp,
     weatherByTime: state.weatherDailyReducer.weatherByTime,
-    nameLocality: state.weatherReducer.nameLocality
+    extraDataDaily: state.weatherDailyReducer.extraDataDaily,
+    iconDailyUrl: state.weatherDailyReducer.iconDailyUrl,
+    nameLocality: state.weatherReducer.nameLocality,
   }
 }
 
 
 export default compose(
-  connect(mapStateToProps, { getDailyWeather })
+  connect(mapStateToProps, { getDailyWeather,imageDailyWeather })
 )(WeatherDailyComponent)

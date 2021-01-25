@@ -37,7 +37,7 @@ export const getWeather = {
 
 export const getWeatherDaily = {
     
-    getDailyData(lat, lon) {
+    getDailyData(lat='0', lon='0') {
         
         return instanceCurentWeather.get(WEATHER_DAILY + LAT + lat + '&' + LON + lon + API_KEY_DAILY)
             .then(responce => responce.data)

@@ -7,13 +7,12 @@ import './weatherColumn.scss'
 const WeatherColumn= ({
     temp,humidity,urlIcon,title,pop
 }) => {
-    console.log(urlIcon);
-    if(!urlIcon){return 'bad'}
-
     
-let iconUrl = `http://openweathermap.org/img/wn/${urlIcon}@2x.png`
-
     
+
+let iconImage = <img src={urlIcon} alt='icon'/>
+
+if(!urlIcon){return '...Loading'}
 
     return (
         <div className='weather-column'>
@@ -26,7 +25,7 @@ let iconUrl = `http://openweathermap.org/img/wn/${urlIcon}@2x.png`
                 </div>
                 
                 <div className='weather-column__icon'>
-                    <img src={iconUrl} alt='icon'/>
+                    {iconImage}
                 </div>
 
                 <div className='weather-column__pop'>

@@ -24,6 +24,8 @@ const WeatherBrieflyComponent=({
     getExtraData(locality)
   }, [locality,getExtraData,icon,getIconUrl])
  
+  
+
   return (
     <div >
 
