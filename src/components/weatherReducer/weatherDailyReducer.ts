@@ -4,7 +4,7 @@ import { getIconImage, getWeatherDaily } from '../../api/api'
 const SET_LOADING = 'SET_LOADING'
 const SET_TEMP_DAILY = 'SET_TEMP_DAILY'
 const SET_TEMP_HOURLY = 'SET_TEMP_HOURLY'
-const SET_ICON_MORN = 'SET_ICON_MORN'
+
 const SET_EXTRA_DATA_DAILY = 'SET_EXTRA_DATA_DAILY'
 const SET_URL_ICON_DAILY = 'SET_URL_ICON_DAILY'
 
@@ -15,8 +15,8 @@ type TypeinitialState = {
     onLoading:boolean,
     dailyTemp:{},
     pop:{},
+    humidity:'',
     hourlyTemp:[],
-    weatherByTime:any,
     extraDataDaily:{},
     iconDailyUrl: string
 }
@@ -25,8 +25,8 @@ let initialState:TypeinitialState = {
     onLoading: false,
     dailyTemp:{},
     pop:{},
+    humidity:'',
     hourlyTemp:[],
-    weatherByTime:{m:'',d:'',e:'',n:''},
     extraDataDaily:{},
     iconDailyUrl: ''
 }
@@ -40,12 +40,11 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
                 ...state, onLoading : action.load
             }
         } 
-       
         
         case SET_TEMP_DAILY:{
            
             return {
-                ...state, dailyTemp : action.temp ,pop: action.pop
+                ...state, dailyTemp : action.temp ,pop: action.pop, humidity:action.humidity
             }
         } 
         case SET_TEMP_HOURLY:{
@@ -64,8 +63,6 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
             }
         } 
         
-    
-        
         default:
             return state
     }
@@ -73,7 +70,7 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
 }
 
 export const loadingProcessing = (load:boolean) => ({ type: SET_LOADING, load})
-export const getDailyWeathe = (temp:any,pop:any) => ({ type: SET_TEMP_DAILY, temp,pop})
+export const getDailyWeathe = (temp:any,pop:any,humidity:any) => ({ type: SET_TEMP_DAILY, temp,pop,humidity})
 export const getHourlyWeathe = (arr:any) => ({ type: SET_TEMP_HOURLY, arr})
 export const setExtraDataDaily = (obj:any) => ({ type: SET_EXTRA_DATA_DAILY, obj})
 export const setUrlIconDaily = (url:any) => ({ type: SET_URL_ICON_DAILY, url})
@@ -89,7 +86,7 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
         
         let base = response.daily[0]
         
-        dispatch(getDailyWeathe(base.temp,base.pop))
+        dispatch(getDailyWeathe(base.temp,base.pop, base.humidity))
         
         dispatch(setExtraDataDaily(base.weather[0]))
 

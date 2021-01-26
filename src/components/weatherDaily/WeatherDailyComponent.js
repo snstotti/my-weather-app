@@ -11,8 +11,8 @@ const WeatherDailyComponent=({
     coordinates,
     onLoading,
     dailyTemp,
-    urlIcon,
-    temperature,
+    humidity,
+    pop,
     weatherByTime,
     nameLocality,
     imageDailyWeather,
@@ -36,8 +36,9 @@ const WeatherDailyComponent=({
         
         <WeatherDaily
           iconUrl={iconDailyUrl}
-          temperature={temperature}
+          humidity={humidity}
           dailyTemp={dailyTemp}
+          pop={pop}
           weatherByTime={weatherByTime}
           nameLocality={nameLocality}
            />
@@ -54,7 +55,8 @@ const mapStateToProps = (state) => {
     onLoading: state.weatherReducer.onLoading,
     dailyTemp: state.weatherDailyReducer.dailyTemp,
     urlIcon: state.weatherReducer.imageUrl,
-    temperature: state.weatherReducer.temperature,
+    humidity: state.weatherDailyReducer.humidity,
+    pop: state.weatherDailyReducer.pop,
     hourlyTemp: state.weatherDailyReducer.hourlyTemp,
     weatherByTime: state.weatherDailyReducer.weatherByTime,
     extraDataDaily: state.weatherDailyReducer.extraDataDaily,

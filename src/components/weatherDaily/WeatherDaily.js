@@ -6,7 +6,7 @@ import {numTemp} from '../weatherBriefly/weatherBriefly'
 
 
 const WeatherDaily= ({
-    weatherByTime,nameLocality,dailyTemp,temperature,iconUrl
+    weatherByTime,nameLocality,dailyTemp,humidity,iconUrl,pop
 }) => {
 
     
@@ -14,10 +14,8 @@ const WeatherDaily= ({
     
     
 
-    const {humidity}=temperature
-    const {morn,day,eve,night} = dailyTemp
-    const {m,d,e,n} = weatherByTime
     
+    const {morn,day,eve,night} = dailyTemp
     
 
     const weatherHelper =(title,temp,humidity,urlIcon,pop)=>{
@@ -32,36 +30,19 @@ const WeatherDaily= ({
         )
     }
 
-    // let morningColumn = weatherHelper('Утро',morn,humidity,m.weather[0].icon,0)
-    let nightColumn = weatherHelper('Ночь',night,humidity,iconUrl,0.10)
+    let morningColumn = weatherHelper('Утро',morn,humidity,iconUrl,pop)
+    let dayColumn = weatherHelper('День',day,humidity,iconUrl,pop)
+    let eveColumn = weatherHelper('Вечер',eve,humidity,iconUrl,pop)
+    let nightColumn = weatherHelper('Ночь',night,humidity,iconUrl,pop)
      
-    
-    // const column = hourlyTemp.map((el)=>{
-    //     let newTitle
-    //     let d = new Date(el.dt*1000)
-    //     let curentHours = d.getHours()
-    //     if(curentHours >= 6 && curentHours < 11){newTitle = 'Утро'}
-    //     if(curentHours >= 11 && curentHours < 16){newTitle = 'День'}
-    //     if(curentHours > 16 && curentHours < 20){newTitle = 'Вечер'}
-    //     if(curentHours > 21 ){newTitle = 'Ночь'}
-
-    //     return(
-            
-    //         <WeatherColumn 
-    //             key={el.dt}
-                
-    //             title={newTitle}
-    //             humidity={el.humidity}
-    //             temp={numTemp(el.temp)}
-    //             urlIcon={el.weather[0].icon}
-    //             pop={el.pop} />
-    //     )
-    // })
 
     return (
         <div className='weather-daily'>
             <h2>Прогноз на сегодня: {nameLocality}</h2>
             <div className='weather-daily__card'>
+                {morningColumn}
+                {dayColumn}
+                {eveColumn}
                 {nightColumn}
             </div>
             
