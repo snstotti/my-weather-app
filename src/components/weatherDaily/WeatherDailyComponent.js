@@ -3,18 +3,15 @@ import { getDailyWeather,imageDailyWeather } from '../weatherReducer/weatherDail
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import WeatherDaily from './WeatherDaily';
-
+import { Spin } from 'antd';
 
 
 const WeatherDailyComponent=({
     getDailyWeather,
     coordinates,
-    onLoading,
     dailyTemp,
     humidity,
     pop,
-    weatherByTime,
-    nameLocality,
     imageDailyWeather,
     extraDataDaily,
     iconDailyUrl
@@ -22,28 +19,22 @@ const WeatherDailyComponent=({
 
     const {lat,lon}=coordinates
     const {icon}=extraDataDaily
-    
-    
 
     useEffect(()=>{
         getDailyWeather(lat,lon)
         imageDailyWeather(icon)
       },[getDailyWeather,lat,lon,imageDailyWeather,icon])
-      
+
+      if(!icon){return <Spin tip="Loading..."/>}
  
   return (
     <div >
-        
         <WeatherDaily
           iconUrl={iconDailyUrl}
           humidity={humidity}
           dailyTemp={dailyTemp}
           pop={pop}
-          weatherByTime={weatherByTime}
-          nameLocality={nameLocality}
            />
-            
-      
     </div>
   );
 }
@@ -51,17 +42,11 @@ const WeatherDailyComponent=({
 const mapStateToProps = (state) => {
   return {
     coordinates: state.weatherReducer.coordinates,
-    onError: state.weatherReducer.onError,
-    onLoading: state.weatherReducer.onLoading,
     dailyTemp: state.weatherDailyReducer.dailyTemp,
-    urlIcon: state.weatherReducer.imageUrl,
     humidity: state.weatherDailyReducer.humidity,
     pop: state.weatherDailyReducer.pop,
-    hourlyTemp: state.weatherDailyReducer.hourlyTemp,
-    weatherByTime: state.weatherDailyReducer.weatherByTime,
     extraDataDaily: state.weatherDailyReducer.extraDataDaily,
     iconDailyUrl: state.weatherDailyReducer.iconDailyUrl,
-    nameLocality: state.weatherReducer.nameLocality,
   }
 }
 

@@ -7,7 +7,14 @@
         align-items: center;
     }
     &__title{
+        color:#fff;
         font-size: 20px;
         font-weight: bold;
     }
+    &__value{
+
+        font-size: 35px;
+        color: peachpuff;
+    }
+
 }

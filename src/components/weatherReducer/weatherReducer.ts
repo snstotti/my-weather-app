@@ -99,7 +99,7 @@ export const getExtraData = (city:any) => async(dispatch:any)=>{
     
     try{
         let response = await getWeather.getExtraData(city)
-        console.log(response);
+        // console.log(response);
         
         dispatch(setExtraData(response.weather[0]))
         dispatch(setNameLocality(response.name))

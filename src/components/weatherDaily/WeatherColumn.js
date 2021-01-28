@@ -1,18 +1,15 @@
 import React from 'react';
 import './weatherColumn.scss'
-
+import { Spin } from 'antd'
 // import 'antd/dist/antd.css';
 
 
 const WeatherColumn= ({
     temp,humidity,urlIcon,title,pop
 }) => {
-    
-    
 
-let iconImage = <img src={urlIcon} alt='icon'/>
-
-if(!urlIcon){return '...Loading'}
+    
+let iconImage = !urlIcon ? <Spin/> : <img src={urlIcon} alt='icon'/>
 
     return (
         <div className='weather-column'>
@@ -21,7 +18,7 @@ if(!urlIcon){return '...Loading'}
                     <p >{title}</p>
                 </div>
                 <div className='weather-column__value'>
-                    <p >Средняя температура {temp}</p>
+                    <p >{temp}</p>
                 </div>
                 
                 <div className='weather-column__icon'>

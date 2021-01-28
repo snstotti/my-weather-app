@@ -82,7 +82,7 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
     
     try{
         let response = await getWeatherDaily.getDailyData(lat, lon)
-        console.log(response);
+        // console.log(response);
         
         let base = response.daily[0]
         
@@ -104,9 +104,10 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
 export const imageDailyWeather =(icon:any)=>async (dispatch:any)=> {
     try{
         let response = await getIconImage.getI(icon)
+        
         dispatch(setUrlIconDaily(response))
     }catch(e){
-        console.log(e);
+        
         
     }
 }

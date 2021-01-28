@@ -6,20 +6,13 @@ import { connect } from 'react-redux';
 import SearchForm from './components/searchForm/SearchForm';
 import WeatherBrieflyComponent from './components/weatherBriefly/WeatherBrieflyComponent';
 import WeatherDailyComponent from './components/weatherDaily/WeatherDailyComponent';
-// import { hot } from 'react-hot-loader'
 
 
+const App=(props)=> {
 
-
-
-
-function App(props) {
-
-
+  
 
   const {   setLocality,locality, } = props
-
-  console.log(new Date(1611684000*1000));
 
   return (
     <div className="app">
@@ -34,8 +27,6 @@ function App(props) {
         <WeatherDailyComponent />
           
       </main>
-        
-      
     </div>
   );
 }
@@ -43,8 +34,6 @@ function App(props) {
 const mapStateToProps = (state) => {
   return {
     nameLocality: state.weatherReducer.nameLocality,
-    
-    
   }
 }
 
