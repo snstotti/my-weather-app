@@ -4,10 +4,32 @@
     box-shadow: 0 0 12px 0 rgba(0,0,0,.2);
     margin-bottom: 40px;
     background-color: rgba(205, 214, 219, 0.3);
-    padding: 10px;
+    padding: 20px;
     h2{color: #fff;}
+    p{
+        margin: 0;
+    }
     &__card{
         display: flex;
+        flex-direction: column;
+    }
+    &__box-temp{
+        display: flex;
         justify-content: space-around;
+        margin-bottom: 1.5em;
+    }
+    &__box-extradata{
+        display: flex;
+        justify-content: space-between;
+    }
+    &__pop{
+        font-size: 20px;
+        color:peachpuff;
+        
+    }
+    &__humidity{
+        font-size: 17px;
+        color:rgb(252, 196, 147);
+        margin-bottom: 0;
     }
 }

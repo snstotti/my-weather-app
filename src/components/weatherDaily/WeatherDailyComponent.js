@@ -11,10 +11,11 @@ const WeatherDailyComponent=({
     coordinates,
     dailyTemp,
     humidity,
-    pop,
+    nameLocality,
+    pop,wind,
     imageDailyWeather,
     extraDataDaily,
-    iconDailyUrl
+    
 })=> {
 
     const {lat,lon}=coordinates
@@ -30,10 +31,11 @@ const WeatherDailyComponent=({
   return (
     <div >
         <WeatherDaily
-          iconUrl={iconDailyUrl}
+          wind={wind}
           humidity={humidity}
           dailyTemp={dailyTemp}
           pop={pop}
+          nameLocality={nameLocality}
            />
     </div>
   );
@@ -46,7 +48,9 @@ const mapStateToProps = (state) => {
     humidity: state.weatherDailyReducer.humidity,
     pop: state.weatherDailyReducer.pop,
     extraDataDaily: state.weatherDailyReducer.extraDataDaily,
+    wind: state.weatherDailyReducer.wind,
     iconDailyUrl: state.weatherDailyReducer.iconDailyUrl,
+    nameLocality: state.weatherReducer.locality,
   }
 }
 
