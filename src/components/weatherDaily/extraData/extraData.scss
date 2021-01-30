@@ -1,0 +1,22 @@
+$extradata_color: peachpuff;
+
+%extraData_shared{
+    font-size: 20px;
+    color:$extradata_color;
+}
+
+%description{
+    font-size: 17px;
+    color: $extradata_color;
+    margin-bottom: 0;
+}
+
+.extra{
+    text-align: center;
+    &__data{
+        @extend %extraData_shared;
+    }
+    &__description{
+        @extend %description;
+    }
+}

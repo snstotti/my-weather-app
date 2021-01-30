@@ -1,13 +1,6 @@
 import React from 'react';
+import { numTemp } from '../helpersFunc/helpersFunc';
 import './weatherBriefly.scss'
-
-export const numTemp = num => {
-    if (!num) {
-        return num
-    }
-    return <>{Math.round(num)}&deg;</>
-}
-
 
 const WeatherBriefly = ({
     urlIcon,

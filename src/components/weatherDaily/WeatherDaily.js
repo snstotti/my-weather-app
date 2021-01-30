@@ -1,7 +1,9 @@
 import React from 'react';
 import WeatherColumn from './WeatherColumn';
 import './weatherDaily.scss'
-import { numTemp } from '../weatherBriefly/weatherBriefly'
+
+import ExtraData from './extraData/ExtraData';
+import { numTemp, roseOfWind } from '../helpersFunc/helpersFunc';
 // import 'antd/dist/antd.css';
 
 
@@ -9,17 +11,18 @@ const WeatherDaily = ({
     nameLocality, dailyTemp, humidity, pop, wind
 }) => {
 
-
-
-
-
-
-
-    const { morn, day, eve, night } = dailyTemp
+    const { morn, day, eve, night, min, max } = dailyTemp
     const { speed,deg } = wind
+    
+    let castumWind = roseOfWind(deg)
+    console.log(castumWind,deg);
+
+    let newHumidity = ExtraData('Вероятность Осадков', `${pop * 100}%`, 'Влажность', `${humidity}%` )
+    let castomTemp = ExtraData( `${numTemp(min)} / ${numTemp(max)}`,'','мин/макс ℃' )
+    let castomWind = ExtraData('Ветер',castumWind, 'Скорость ветра', speed)
 
 
-    const weatherHelper = (title, temp, humidity, pop) => {
+    const weatherHelper = (title, temp, humidity, pop, ) => {
 
         return (
             <WeatherColumn
@@ -48,34 +51,13 @@ const WeatherDaily = ({
                     {nightColumn}
                 </div>
                 <div className='weather-daily__box-extradata'>
-                    <div>
-                        <div className='weather-daily__pop'>
-                            <p>Вероятность осадков {pop * 100}%</p>
-                        </div>
-
-                        <div className='weather-daily__humidity'>
-                            <p >Влажность {humidity}%</p>
-                        </div>
-                    </div>
-                    <div>
-                        <div className='weather-daily__wind-deg'>
-                            <p>Ветер {deg}</p>
-                        </div>
-
-                        <div className='weather-daily__wind-speed'>
-                            <p >Скорость ветра {Math.round(speed)} м/с</p>
-                        </div>
-                    </div>
+                    {newHumidity}
+                    {castomTemp}
+                    {castomWind}
                 </div>
-
             </div>
-
-
         </div>
-            
-       
     )
-
 }
 
 export default WeatherDaily

@@ -1,3 +1,7 @@
+%cardDaily_shared{
+    display: flex;
+    justify-content: space-around;
+}
 .weather-daily{
     width: 100%;
     border-radius: 6px;
@@ -14,22 +18,10 @@
         flex-direction: column;
     }
     &__box-temp{
-        display: flex;
-        justify-content: space-around;
+        @extend %cardDaily_shared;
         margin-bottom: 1.5em;
     }
     &__box-extradata{
-        display: flex;
-        justify-content: space-between;
-    }
-    &__pop{
-        font-size: 20px;
-        color:peachpuff;
-        
-    }
-    &__humidity{
-        font-size: 17px;
-        color:rgb(252, 196, 147);
-        margin-bottom: 0;
+        @extend %cardDaily_shared;
     }
 }
