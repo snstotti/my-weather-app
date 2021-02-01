@@ -6,8 +6,6 @@ export const numTemp = num => {
 }
 
 export const roseOfWind = num => {
-    
-
     if (num >= 0 && num < 22.5) {
         return "Северный"
     }

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import SearchForm from './components/searchForm/SearchForm';
 import WeatherBrieflyComponent from './components/weatherBriefly/WeatherBrieflyComponent';
 import WeatherDailyComponent from './components/weatherDaily/WeatherDailyComponent';
+import WeatherHourlyComponent from './components/weatherHourly/WeatherHourlyComponent';
 
 
 const App=(props)=> {
@@ -22,11 +23,14 @@ const App=(props)=> {
       
       <main className="app__main">
         <SearchForm setLocality={setLocality} locality={locality} />
-
+        
         <WeatherBrieflyComponent/>
         <WeatherDailyComponent />
-          
+        <WeatherHourlyComponent />
       </main>
+      <footer>
+        footer
+      </footer>
     </div>
   );
 }

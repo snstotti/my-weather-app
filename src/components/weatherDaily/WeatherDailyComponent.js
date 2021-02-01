@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import WeatherDaily from './WeatherDaily';
 import { Spin } from 'antd';
+import CustomWrapper from '../helpersFunc/customWrapper/CustomWrapper';
 
 
 const WeatherDailyComponent=({
@@ -30,13 +31,16 @@ const WeatherDailyComponent=({
  
   return (
     <div >
+      <CustomWrapper>
         <WeatherDaily
           wind={wind}
           humidity={humidity}
           dailyTemp={dailyTemp}
           pop={pop}
           nameLocality={nameLocality}
-           />
+        />
+      </CustomWrapper>
+        
     </div>
   );
 }

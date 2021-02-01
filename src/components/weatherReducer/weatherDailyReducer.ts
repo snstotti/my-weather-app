@@ -3,10 +3,11 @@ import { getIconImage, getWeatherDaily } from '../../api/api'
 
 const SET_LOADING = 'SET_LOADING'
 const SET_TEMP_DAILY = 'SET_TEMP_DAILY'
-const SET_TEMP_HOURLY = 'SET_TEMP_HOURLY'
+const SET_TEMP_CURRENT = 'SET_TEMP_CURRENT'
 const SET_WIND_DAILY = 'SET_WIND_DAILY'
 const SET_EXTRA_DATA_DAILY = 'SET_EXTRA_DATA_DAILY'
 const SET_URL_ICON_DAILY = 'SET_URL_ICON_DAILY'
+const SET_HOURLY_DATA = 'SET_HOURLY_DATA'
 
 
 
@@ -19,7 +20,8 @@ type TypeinitialState = {
     hourlyTemp:[]
     extraDataDaily:{}
     iconDailyUrl: string
-    wind:{}
+    wind:{},
+    hourlyData:any
 }
 
 let initialState:TypeinitialState = {
@@ -30,7 +32,8 @@ let initialState:TypeinitialState = {
     hourlyTemp:[],
     extraDataDaily:{},
     iconDailyUrl: '',
-    wind:{}
+    wind:{},
+    hourlyData:[]
 }
 
 const weatherDailyReducer =(state = initialState, action:any)=>{
@@ -49,9 +52,23 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
                 ...state, dailyTemp : action.temp ,pop: action.pop, humidity:action.humidity
             }
         } 
-        case SET_TEMP_HOURLY:{
+        case SET_TEMP_CURRENT:{
             return {
                 ...state, hourlyTemp : action.arr
+            }
+        } 
+        case SET_HOURLY_DATA:{
+                let hourlyArr = action.arr.slice(0, 5).map((el:any)=>{
+                    return{
+                        date:el.dt,
+                        temperature: el.temp,
+                        icon:el.weather[0].icon,
+                        pop:el.pop
+                    }
+                    
+                })
+            return {
+                ...state, hourlyData : hourlyArr
             }
         } 
         case SET_EXTRA_DATA_DAILY:{
@@ -78,10 +95,11 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
 
 export const loadingProcessing = (load:boolean) => ({ type: SET_LOADING, load})
 export const getDailyWeathe = (temp:any,pop:any,humidity:any) => ({ type: SET_TEMP_DAILY, temp,pop,humidity})
-export const getHourlyWeathe = (arr:any) => ({ type: SET_TEMP_HOURLY, arr})
+export const getCurentWeathe = (arr:any) => ({ type: SET_TEMP_CURRENT, arr})
 export const setExtraDataDaily = (obj:any) => ({ type: SET_EXTRA_DATA_DAILY, obj})
 export const setUrlIconDaily = (url:any) => ({ type: SET_URL_ICON_DAILY, url})
 export const setWindDaily = (speed:any,deg:any) => ({ type: SET_WIND_DAILY, speed,deg})
+export const setHourlyData = (arr:any) => ({ type: SET_HOURLY_DATA, arr})
 
 
 
@@ -96,10 +114,10 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
         
         dispatch(getDailyWeathe(base.temp,base.pop, base.humidity,))
         dispatch(setWindDaily(base.wind_speed,base.wind_deg))
-        
+        dispatch(setHourlyData(response.hourly))
         dispatch(setExtraDataDaily(base.weather[0]))
 
-        dispatch(getHourlyWeathe(response.daily[0]))
+        dispatch(getCurentWeathe(response.daily[0]))
       
         dispatch(loadingProcessing(false))
      
