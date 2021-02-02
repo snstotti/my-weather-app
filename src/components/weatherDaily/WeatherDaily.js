@@ -15,7 +15,7 @@ const WeatherDaily = ({
     const { speed,deg } = wind
     
     let castumWind = roseOfWind(deg)
-    console.log(castumWind,deg);
+    
 
     let newHumidity = ExtraData('Вероятность Осадков', `${pop * 100}%`, 'Влажность', `${humidity}%` )
     let castomTemp = ExtraData( `${numTemp(min)} / ${numTemp(max)}`,'','мин/макс ℃' )

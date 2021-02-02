@@ -1,0 +1,31 @@
+$extradata_color: peachpuff;
+
+.weather-hourly{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    h2{color: #fff;}
+}
+
+.hourly-block{
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    &__time{
+        color:#fff;
+        font-size: 20px;
+    }
+    &__icon{
+       
+    }
+    &__pop{
+        font-size: 17px;
+        color: $extradata_color;
+        margin-bottom: 0;
+    }
+    &__temp{
+        margin: 0;
+        font-size: 35px;
+        color: peachpuff;
+    }
+}

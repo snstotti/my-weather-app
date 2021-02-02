@@ -3,26 +3,21 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import CustomWrapper from '../helpersFunc/customWrapper/CustomWrapper';
 import WeatherHourly from './WeatherHourly';
-import { imageHourlyWeather } from '../weatherReducer/weatherHourleReduce';
 
 
 
-const WeatherHourlyComponent=({hourlyData,iconHourly,imageHourlyWeather})=> {
 
-  
+const WeatherHourlyComponent=({hourlyData})=> {
 
-  
-    
-  
+  // useEffect(()=>{
+  //   hourlyData
+  // },[hourlyData])  
 
   return (
     < >
       <CustomWrapper>
         <WeatherHourly
-        hourlyData={hourlyData}
-        iconHourly={iconHourly}
-        getIcon = {imageHourlyWeather}
-          />
+        hourlyData={hourlyData} />
       </CustomWrapper>
     </>
   );
@@ -31,11 +26,11 @@ const WeatherHourlyComponent=({hourlyData,iconHourly,imageHourlyWeather})=> {
 const mapStateToProps = (state) => {
   return {
     hourlyData: state.weatherDailyReducer.hourlyData,
-    iconHourly: state.weatherHourlyReducer.iconHourly,
+ 
   }
 }
 
 
 export default compose(
-  connect(mapStateToProps,{imageHourlyWeather})
+  connect(mapStateToProps)
 )(WeatherHourlyComponent)

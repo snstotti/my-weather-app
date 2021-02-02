@@ -20,8 +20,9 @@ type TypeinitialState = {
     hourlyTemp:[]
     extraDataDaily:{}
     iconDailyUrl: string
-    wind:{},
+    wind:{}
     hourlyData:any
+    timeZone: 0
 }
 
 let initialState:TypeinitialState = {
@@ -33,7 +34,8 @@ let initialState:TypeinitialState = {
     extraDataDaily:{},
     iconDailyUrl: '',
     wind:{},
-    hourlyData:[]
+    hourlyData:[],
+    timeZone: 0
 }
 
 const weatherDailyReducer =(state = initialState, action:any)=>{
@@ -49,7 +51,11 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
         case SET_TEMP_DAILY:{
            
             return {
-                ...state, dailyTemp : action.temp ,pop: action.pop, humidity:action.humidity
+                ...state, 
+                dailyTemp : action.temp,
+                pop: action.pop,
+                humidity: action.humidity,
+                timeZone: action.time
             }
         } 
         case SET_TEMP_CURRENT:{
@@ -58,7 +64,7 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
             }
         } 
         case SET_HOURLY_DATA:{
-                let hourlyArr = action.arr.slice(0, 5).map((el:any)=>{
+                let hourlyArr = action.arr.slice(1, 6).map((el:any)=>{
                     return{
                         date:el.dt,
                         temperature: el.temp,
@@ -94,7 +100,7 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
 }
 
 export const loadingProcessing = (load:boolean) => ({ type: SET_LOADING, load})
-export const getDailyWeathe = (temp:any,pop:any,humidity:any) => ({ type: SET_TEMP_DAILY, temp,pop,humidity})
+export const getDailyWeathe = (temp:any,pop:any,humidity:any,time:any) => ({ type: SET_TEMP_DAILY, temp,pop,humidity,time})
 export const getCurentWeathe = (arr:any) => ({ type: SET_TEMP_CURRENT, arr})
 export const setExtraDataDaily = (obj:any) => ({ type: SET_EXTRA_DATA_DAILY, obj})
 export const setUrlIconDaily = (url:any) => ({ type: SET_URL_ICON_DAILY, url})
@@ -112,7 +118,7 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
         
         let base = response.daily[0]
         
-        dispatch(getDailyWeathe(base.temp,base.pop, base.humidity,))
+        dispatch(getDailyWeathe(base.temp,base.pop, base.humidity,response.timezone_offset))
         dispatch(setWindDaily(base.wind_speed,base.wind_deg))
         dispatch(setHourlyData(response.hourly))
         dispatch(setExtraDataDaily(base.weather[0]))
