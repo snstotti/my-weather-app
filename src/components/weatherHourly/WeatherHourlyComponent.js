@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import CustomWrapper from '../helpersFunc/customWrapper/CustomWrapper';
@@ -7,17 +7,14 @@ import WeatherHourly from './WeatherHourly';
 
 
 
-const WeatherHourlyComponent=({hourlyData})=> {
-
-  // useEffect(()=>{
-  //   hourlyData
-  // },[hourlyData])  
+const WeatherHourlyComponent=({hourlyData,timeZone})=> {
 
   return (
     < >
       <CustomWrapper>
         <WeatherHourly
-        hourlyData={hourlyData} />
+          hourlyData={hourlyData}
+          timeZone={timeZone} />
       </CustomWrapper>
     </>
   );
@@ -26,10 +23,9 @@ const WeatherHourlyComponent=({hourlyData})=> {
 const mapStateToProps = (state) => {
   return {
     hourlyData: state.weatherDailyReducer.hourlyData,
- 
+    timeZone: state.weatherDailyReducer.timeZone,
   }
 }
-
 
 export default compose(
   connect(mapStateToProps)

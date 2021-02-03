@@ -7,6 +7,7 @@ import SearchForm from './components/searchForm/SearchForm';
 import WeatherBrieflyComponent from './components/weatherBriefly/WeatherBrieflyComponent';
 import WeatherDailyComponent from './components/weatherDaily/WeatherDailyComponent';
 import WeatherHourlyComponent from './components/weatherHourly/WeatherHourlyComponent';
+import DailyForecastContainer from './components/dailyForecast/DailyForecastContainer';
 
 
 const App=(props)=> {
@@ -27,6 +28,7 @@ const App=(props)=> {
         <WeatherBrieflyComponent/>
         <WeatherDailyComponent />
         <WeatherHourlyComponent />
+        <DailyForecastContainer />
       </main>
       <footer>
         footer

@@ -1,0 +1,12 @@
+@import '../weatherHourly/weatherHourly.scss';
+
+.hourly-block{
+
+    &__temp-max{
+        @extend %tempNum-shared;
+    }
+    &__temp-min{
+        @extend %tempNum-shared;
+        font-size: 25px;
+    }
+}

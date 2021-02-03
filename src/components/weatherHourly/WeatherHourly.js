@@ -2,15 +2,21 @@ import React from 'react';
 import './weatherHourly.scss';
 import {numTemp} from '../helpersFunc/helpersFunc'
 
+export const round = num =>{
+    let newNum = num * 100 
+     return Math.round(newNum) 
+ }
 
 
-const WeatherHourly = ({hourlyData}) => {
+const WeatherHourly = ({hourlyData,timeZone}) => {
+    
+    
   
    let hour = hourlyData.map(el=>{
        const {date,temperature,pop,icon} = el
         let temp = numTemp(temperature)
-       let time = new Date(date * 1000)
-       let clock = time.toLocaleTimeString().slice(0,-3)
+       let time = new Date((date + (timeZone)) * 1000)
+       let clock = time.toLocaleTimeString('en-GB',{timeZone: 'UTC'}).slice(0,-3)
        
        return(
         <div key={date}>
@@ -24,7 +30,7 @@ const WeatherHourly = ({hourlyData}) => {
                 {temp}
             </div>
             <div className='hourly-block__pop'>
-               {pop * 100}%
+               {round(pop)}%
             </div>
             
         </div>

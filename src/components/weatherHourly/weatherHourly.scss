@@ -1,5 +1,11 @@
 $extradata_color: peachpuff;
 
+%tempNum-shared{
+    margin: 0;
+        font-size: 35px;
+        color: $extradata_color;
+}
+
 .weather-hourly{
     display: flex;
     justify-content: space-between;
@@ -24,8 +30,7 @@ $extradata_color: peachpuff;
         margin-bottom: 0;
     }
     &__temp{
-        margin: 0;
-        font-size: 35px;
-        color: peachpuff;
+        @extend %tempNum-shared;
+        
     }
 }

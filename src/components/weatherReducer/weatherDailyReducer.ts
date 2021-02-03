@@ -8,6 +8,7 @@ const SET_WIND_DAILY = 'SET_WIND_DAILY'
 const SET_EXTRA_DATA_DAILY = 'SET_EXTRA_DATA_DAILY'
 const SET_URL_ICON_DAILY = 'SET_URL_ICON_DAILY'
 const SET_HOURLY_DATA = 'SET_HOURLY_DATA'
+const SET_DAILY_FORECAST = 'SET_DAILY_FORECAST'
 
 
 
@@ -22,6 +23,7 @@ type TypeinitialState = {
     iconDailyUrl: string
     wind:{}
     hourlyData:any
+    dailyForecast:any
     timeZone: 0
 }
 
@@ -35,6 +37,7 @@ let initialState:TypeinitialState = {
     iconDailyUrl: '',
     wind:{},
     hourlyData:[],
+    dailyForecast:[],
     timeZone: 0
 }
 
@@ -64,7 +67,7 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
             }
         } 
         case SET_HOURLY_DATA:{
-                let hourlyArr = action.arr.slice(1, 6).map((el:any)=>{
+                let hourlyArr = action.arr.slice(0, 6).map((el:any)=>{
                     return{
                         date:el.dt,
                         temperature: el.temp,
@@ -75,6 +78,21 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
                 })
             return {
                 ...state, hourlyData : hourlyArr
+            }
+        } 
+        case SET_DAILY_FORECAST:{
+                let dailyArr = action.arr.slice(0, 6).map((el:any)=>{
+                    return{
+                        date:el.dt,
+                        tempMin: el.temp.min,
+                        tempMax: el.temp.max,
+                        icon:el.weather[0].icon,
+                        pop:el.pop
+                    }
+                    
+                })
+            return {
+                ...state, dailyForecast : dailyArr
             }
         } 
         case SET_EXTRA_DATA_DAILY:{
@@ -106,6 +124,7 @@ export const setExtraDataDaily = (obj:any) => ({ type: SET_EXTRA_DATA_DAILY, obj
 export const setUrlIconDaily = (url:any) => ({ type: SET_URL_ICON_DAILY, url})
 export const setWindDaily = (speed:any,deg:any) => ({ type: SET_WIND_DAILY, speed,deg})
 export const setHourlyData = (arr:any) => ({ type: SET_HOURLY_DATA, arr})
+export const getDailyForecast = (arr:any) => ({ type: SET_DAILY_FORECAST, arr})
 
 
 
@@ -117,7 +136,7 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
         console.log(response);
         
         let base = response.daily[0]
-        
+        dispatch(getDailyForecast(response.daily))
         dispatch(getDailyWeathe(base.temp,base.pop, base.humidity,response.timezone_offset))
         dispatch(setWindDaily(base.wind_speed,base.wind_deg))
         dispatch(setHourlyData(response.hourly))
