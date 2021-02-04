@@ -52,7 +52,7 @@ const DailyForecast = ({dailyForecast}) => {
 export default DailyForecast
 
 
-const setDayOfWeek = date =>{
+export const setDayOfWeek = date =>{
     let days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
     let curentDate = new Date(date * 1000)
    let day = curentDate.getDate()

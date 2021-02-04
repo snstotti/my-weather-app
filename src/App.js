@@ -8,6 +8,7 @@ import WeatherBrieflyComponent from './components/weatherBriefly/WeatherBrieflyC
 import WeatherDailyComponent from './components/weatherDaily/WeatherDailyComponent';
 import WeatherHourlyComponent from './components/weatherHourly/WeatherHourlyComponent';
 import DailyForecastContainer from './components/dailyForecast/DailyForecastContainer';
+import WeatherCurrentContainer from './components/weatherCurrent/WeatherCurrentContainer';
 
 
 const App=(props)=> {
@@ -26,6 +27,7 @@ const App=(props)=> {
         <SearchForm setLocality={setLocality} locality={locality} />
         
         <WeatherBrieflyComponent/>
+        <WeatherCurrentContainer/>
         <WeatherDailyComponent />
         <WeatherHourlyComponent />
         <DailyForecastContainer />

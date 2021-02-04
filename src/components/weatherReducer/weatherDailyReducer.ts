@@ -9,6 +9,7 @@ const SET_EXTRA_DATA_DAILY = 'SET_EXTRA_DATA_DAILY'
 const SET_URL_ICON_DAILY = 'SET_URL_ICON_DAILY'
 const SET_HOURLY_DATA = 'SET_HOURLY_DATA'
 const SET_DAILY_FORECAST = 'SET_DAILY_FORECAST'
+const SET_DETAILED_WEATHER = 'SET_DETAILED_WEATHER'
 
 
 
@@ -25,6 +26,7 @@ type TypeinitialState = {
     hourlyData:any
     dailyForecast:any
     timeZone: 0
+    detailedWeather: {}
 }
 
 let initialState:TypeinitialState = {
@@ -38,7 +40,8 @@ let initialState:TypeinitialState = {
     wind:{},
     hourlyData:[],
     dailyForecast:[],
-    timeZone: 0
+    timeZone: 0,
+    detailedWeather: {}
 }
 
 const weatherDailyReducer =(state = initialState, action:any)=>{
@@ -95,6 +98,12 @@ const weatherDailyReducer =(state = initialState, action:any)=>{
                 ...state, dailyForecast : dailyArr
             }
         } 
+        case SET_DETAILED_WEATHER:{
+               
+            return {
+                ...state, detailedWeather : action.arr
+            }
+        } 
         case SET_EXTRA_DATA_DAILY:{
             return {
                 ...state, extraDataDaily : action.obj
@@ -125,6 +134,8 @@ export const setUrlIconDaily = (url:any) => ({ type: SET_URL_ICON_DAILY, url})
 export const setWindDaily = (speed:any,deg:any) => ({ type: SET_WIND_DAILY, speed,deg})
 export const setHourlyData = (arr:any) => ({ type: SET_HOURLY_DATA, arr})
 export const getDailyForecast = (arr:any) => ({ type: SET_DAILY_FORECAST, arr})
+export const getDetailedWeather = (arr:any) => ({ type: SET_DETAILED_WEATHER, arr})
+
 
 
 
@@ -143,6 +154,7 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
         dispatch(setExtraDataDaily(base.weather[0]))
 
         dispatch(getCurentWeathe(response.daily[0]))
+        dispatch(getDetailedWeather(response.current))
       
         dispatch(loadingProcessing(false))
      
