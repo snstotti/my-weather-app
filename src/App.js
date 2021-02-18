@@ -9,18 +9,21 @@ import WeatherDailyComponent from './components/weatherDaily/WeatherDailyCompone
 import WeatherHourlyComponent from './components/weatherHourly/WeatherHourlyComponent';
 import DailyForecastContainer from './components/dailyForecast/DailyForecastContainer';
 import WeatherCurrentContainer from './components/weatherCurrent/WeatherCurrentContainer';
+import Footer from './components/footer/Footer';
+import Header from './components/header/Header';
+
 
 
 const App=(props)=> {
 
   
 
-  const {   setLocality,locality, } = props
+  const {   setLocality,locality, hourlyData, timeZone} = props
 
   return (
     <div className="app">
       <header className="app__header">
-        {/* DATE {hours} */}
+        <Header hourlyData={hourlyData} timeZone={timeZone} />
       </header>
       
       <main className="app__main">
@@ -33,7 +36,7 @@ const App=(props)=> {
         <DailyForecastContainer />
       </main>
       <footer>
-        footer
+        <Footer />
       </footer>
     </div>
   );
@@ -42,6 +45,8 @@ const App=(props)=> {
 const mapStateToProps = (state) => {
   return {
     nameLocality: state.weatherReducer.nameLocality,
+    hourlyData: state.weatherDailyReducer.hourlyData,
+    timeZone: state.weatherDailyReducer.timeZone,
   }
 }
 

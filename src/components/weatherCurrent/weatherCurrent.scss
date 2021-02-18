@@ -1,0 +1,19 @@
+.weather-current{
+    &__list{
+        display: flex;
+        justify-content: space-around;
+    }
+    &__item{
+        margin: 0 10px;
+        padding: 0;
+       list-style: none;
+    }
+    &__item li{
+        font-size: 20px;
+        color:white;
+    }
+    &__item li span{
+        font-size: 25px;
+        color:peachpuff;
+    }
+}

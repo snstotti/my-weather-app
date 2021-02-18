@@ -27,9 +27,9 @@ const WeatherBriefly = ({
     return (
         <div className='weather-breafly'>
             <div className='weather-breafly__card'>
-                <p className='weather-breafly__title'>
+                <h2 className='weather-breafly__title'>
                     Погода: {!onError && nameLocality}
-                </p>
+                </h2>
                 <h2 className='weather-breafly__degree'>{numTemp(temp)}</h2>
                 <p className='weather-breafly__feels-like'>
                     Ощущается как: {numTemp(feels_like)}

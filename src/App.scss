@@ -31,15 +31,20 @@ body{
   background: linear-gradient(0deg, rgba(252,70,107,1) 0%, rgba(252,70,107,1) 0%, rgba(63,94,251,1) 100%);
   background-attachment:fixed;
   background-position:100%;
+  h2{
+    font-size: 24px;
+    margin: 10px 0;
+    color: white;
+  }
 }
 .app {
-  margin: 20px auto;
-  max-width: 800px;
+  
+ 
   &__main{
     
     position: relative;
-   
-   
+    margin: 20px auto;
+    max-width: 800px;
    
   }
   
@@ -47,6 +52,7 @@ body{
 
 
 .app__header {
+  width: 100%;
   min-height: 50px;
   display: flex;
   flex-direction: column;
@@ -54,6 +60,7 @@ body{
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-color: rgba(16, 15, 99, 0.5);
 }
 
 
