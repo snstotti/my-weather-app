@@ -20,16 +20,12 @@ const SearchForm = ({ setLocality }) => {
         
     } 
 
-    // const onFinishFailed = (errorInfo) => {
-    //     console.log('Failed:', errorInfo);
-    //   };
-
-    // const {Search} = Input
+  
 
     return (
         <Form 
             form={form} 
-            // onFinishFailed={onFinishFailed}
+           
             name="basic"
             onFinish={onFinish}  
             initialValues={{ remember: true }} 
@@ -37,7 +33,7 @@ const SearchForm = ({ setLocality }) => {
              >
 
             <Form.Item
-                // rules={[{ required: true, message: 'Please input your username!' }]}
+              
                 placeholder="input search text"
                 style={{ width: 200, margin: '0' }}
                 name='text' >

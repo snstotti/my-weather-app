@@ -1,15 +1,24 @@
+import './header.scss'
 import React from 'react'
 
 
-const Header =({timeZone,hourlyData})=>{
-    console.log(timeZone)
-    const {date} = hourlyData
-    let time = new Date((date + (timeZone)) * 1000)
-    let clock = time.toLocaleTimeString('en-GB',{timeZone: 'UTC'}).slice(0,-3)
+const Header =()=>{
+   
+  
+    const clockCover = () => {
+        let times = new Date()
+        let clocks = times.toLocaleDateString('en-GB').split('/')
+        let clocker = clocks.map(el => {
+            if (el.length <= 1) {
+                return '0' + el
+            } return el
+        })
+        return clocker.join(' . ')
+    }
 
     return(
-        <div>
-            {clock}
+        <div className='header'>
+            Сегодня <span className='header__date'> {clockCover()} </span>
         </div>
     )
 }

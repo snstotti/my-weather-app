@@ -23,14 +23,6 @@ const WeatherCurrent = ({detailedWeather,timeZone}) => {
         </p>)
     let paragraph = (!timeZone) ? <Spin /> : sun
 
-    let newObj = []
-
-
-    const arrExtra = ['По ощущению', 'Давление','Влажность','Точка росы','Ультрафиолетовый индекс','Облачность','Скорость Ветра']
-
-   
-    
-
     return (
         <div className='weather-current'>
             <h2>Погода на сегодня:</h2>

@@ -18,25 +18,25 @@ const App=(props)=> {
 
   
 
-  const {   setLocality,locality, hourlyData, timeZone} = props
+  const { setLocality } = props
 
   return (
     <div className="app">
       <header className="app__header">
-        <Header hourlyData={hourlyData} timeZone={timeZone} />
+        <Header />
       </header>
       
       <main className="app__main">
-        <SearchForm setLocality={setLocality} locality={locality} />
+        <SearchForm setLocality={setLocality} />
         
-        <WeatherBrieflyComponent/>
+        <WeatherBrieflyComponent/> 
         <WeatherCurrentContainer/>
         <WeatherDailyComponent />
         <WeatherHourlyComponent />
         <DailyForecastContainer />
       </main>
       <footer>
-        <Footer />
+       <Footer />
       </footer>
     </div>
   );
@@ -44,14 +44,11 @@ const App=(props)=> {
 
 const mapStateToProps = (state) => {
   return {
-    nameLocality: state.weatherReducer.nameLocality,
-    hourlyData: state.weatherDailyReducer.hourlyData,
-    timeZone: state.weatherDailyReducer.timeZone,
+
   }
 }
 
 
 export default compose(
-  
   connect(mapStateToProps, { setLocality })
 )(App)
