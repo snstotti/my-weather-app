@@ -16,4 +16,13 @@
         font-size: 25px;
         color:peachpuff;
     }
+    &__up{
+        position: relative;
+        bottom: 6px;
+    }
+    &__down{
+        position: relative;
+        top: 8px;
+        transform: rotate(180deg);
+    }
 }

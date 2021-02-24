@@ -1,5 +1,6 @@
 import { Spin } from 'antd';
-
+import sun_up from '../image/sun_up.svg'
+import sun_down from '../image/sun_down.svg'
 import React from 'react';
 import { numTemp } from '../helpersFunc/helpersFunc';
 
@@ -18,8 +19,9 @@ const WeatherCurrent = ({detailedWeather,timeZone}) => {
     const { feels_like, pressure, humidity, dew_point, uvi, clouds, wind_speed, sunrise, sunset } = detailedWeather
 
     let sun = (
+        
         <p style={{color:'white'}}>
-            Восход: {setSun(sunrise, timeZone)} / Заход: {setSun(sunset, timeZone)}
+            Восход: <img src={sun_up} alt='up' className='weather-current__up' /> {setSun(sunrise, timeZone)} / Заход: <img src={sun_down} alt='down' className='weather-current__down' /> {setSun(sunset, timeZone)}
         </p>)
     let paragraph = (!timeZone) ? <Spin /> : sun
 
@@ -27,6 +29,7 @@ const WeatherCurrent = ({detailedWeather,timeZone}) => {
         <div className='weather-current'>
             <h2>Погода на сегодня:</h2>
             <div>
+                
                 {paragraph}
             </div>
             <div className='weather-current__list'>
