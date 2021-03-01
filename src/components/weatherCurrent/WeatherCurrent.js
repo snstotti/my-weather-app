@@ -1,6 +1,6 @@
 import { Spin } from 'antd';
-import sun_up from '../image/sun_up.svg'
-import sun_down from '../image/sun_down.svg'
+import sun_up from '../../image/sun_up.svg'
+import sun_down from '../../image/sun_down.svg'
 import React from 'react';
 import { numTemp } from '../helpersFunc/helpersFunc';
 
