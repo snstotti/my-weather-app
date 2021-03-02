@@ -21,23 +21,24 @@ const App=(props)=> {
   const { setLocality } = props
 
   return (
-    <div className="app">
-      <header className="app__header">
+    <div className='wrapper'>
+      <header className="header">
         <Header />
       </header>
-      
-      <main className="app__main">
-        <SearchForm setLocality={setLocality} />
-        
-        <WeatherBrieflyComponent/> 
-        <WeatherCurrentContainer/>
-        <WeatherDailyComponent />
-        <WeatherHourlyComponent />
-        <DailyForecastContainer />
-      </main>
+      <div className="app">
+        <main className="app__main">
+          <SearchForm setLocality={setLocality} />
+          <WeatherBrieflyComponent />
+          <WeatherCurrentContainer />
+          <WeatherDailyComponent />
+          <WeatherHourlyComponent />
+          <DailyForecastContainer />
+        </main>
+       
+      </div>
       <footer>
-       <Footer />
-      </footer>
+          <Footer />
+        </footer>
     </div>
   );
 }

@@ -17,8 +17,8 @@ const Header =()=>{
     }
 
     return(
-        <div className='header'>
-            Сегодня <span className='header__date'> {clockCover()} </span>
+        <div className='head'>
+            Сегодня <span className='head__date'> {clockCover()} </span>
         </div>
     )
 }

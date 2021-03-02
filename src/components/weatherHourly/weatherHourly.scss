@@ -14,9 +14,18 @@ $extradata_color: peachpuff;
 }
 
 .hourly-block{
-    display: flex;
-    justify-content: space-around;
+    width: 100%;
     text-align: center;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    &__list{
+        border: 1px solid white;
+        padding: 10px;
+    }
     &__time{
         color:#fff;
         font-size: 20px;
@@ -32,3 +41,9 @@ $extradata_color: peachpuff;
         
     }
 }
+
+// @media(max-width:767px){
+//     .hourly-block{
+//         flex-direction: column;
+//     }
+// }

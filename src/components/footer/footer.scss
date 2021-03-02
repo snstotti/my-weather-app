@@ -1,14 +1,12 @@
 .footer{
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     background: #18363d73;
-    width: 100%;
+    // width: 100%;
     padding: 10px;
     color: #71aef8;
     font-size: 20px;
-    // &__link{
-    //     // margin: 10px;
-    //     // padding: 10px 0;
-    // }
+   
     &__link span{
         margin-right: 20px;
         
@@ -20,15 +18,21 @@
     &__link a img:hover{
         width: 60px;
         padding: 0;
+        margin-right: -10px;
     }
     &__apiLink img{
         width: 200px;
     }
     &__apiLink{
+        margin-top: 20px;
         display: flex;
-        align-items: flex-end;
+        
     }
     &__apiLink span{
         margin-right: 20px;
+    }
+    &__progectLinks{
+        display: flex;
+        margin-top: 20px;
     }
 }

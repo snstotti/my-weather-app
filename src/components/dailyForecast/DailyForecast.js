@@ -16,24 +16,24 @@ const DailyForecast = ({dailyForecast}) => {
     let dat = setDayOfWeek(date)
    
    return(
-    <div key={date}>
-        <div className='hourly-block__time'>
+    <li key={date}>
+        <p className='hourly-block__time'>
             {dat}
-        </div>
-        <div className='hourly-block__icon'>
+        </p>
+        <p className='hourly-block__icon'>
            <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt='gg' />
-        </div>
-        <div  className='hourly-block__temp-max'>
+        </p>
+        <p  className='hourly-block__temp-max'>
             {maxTemperature}
-        </div>
-        <div  className='hourly-block__temp-min'>
+        </p>
+        <p  className='hourly-block__temp-min'>
             {minTemperature}
-        </div>
-        <div className='hourly-block__pop'>
+        </p>
+        <p className='hourly-block__pop'>
            {round(pop)}%
-        </div>
+        </p>
         
-    </div>
+    </li>
    )
    })
 

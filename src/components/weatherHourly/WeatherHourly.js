@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './weatherHourly.scss';
 import {numTemp} from '../helpersFunc/helpersFunc'
 
@@ -19,30 +19,30 @@ const WeatherHourly = ({hourlyData,timeZone}) => {
        let clock = time.toLocaleTimeString('en-GB',{timeZone: 'UTC'}).slice(0,-3)
        
        return(
-        <div key={date}>
-            <div className='hourly-block__time'>
+        <li key={date} className='hourly-block__list'>
+            <p className='hourly-block__time'>
                 {clock}
-            </div>
-            <div className='hourly-block__icon'>
+            </p>
+            <p className='hourly-block__icon'>
                <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt='gg' />
-            </div>
-            <div  className='hourly-block__temp'>
+            </p>
+            <p  className='hourly-block__temp'>
                 {temp}
-            </div>
-            <div className='hourly-block__pop'>
+            </p>
+            <p className='hourly-block__pop'>
                {round(pop)}%
-            </div>
+            </p>
             
-        </div>
+        </li>
        )
    })
 
     return (
         <div className='weather-hourly'>
              <h2>Почасовой прогноз:</h2>
-             <div className='hourly-block'>
+             <ul className='hourly-block'>
                 {hour}
-             </div>
+             </ul>
             
         </div>
     )

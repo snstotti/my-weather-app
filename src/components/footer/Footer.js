@@ -15,7 +15,15 @@ const Footer = () => {
                 <a href='https://github.com/snstotti'><img src={github} alt='github' /></a>
                 <a href='https://t.me/NikolayKhanzhin'><img src={telega} alt='telega' /></a>
             </div>
-            <div>Еще проекты</div>
+            <div className='footer__progectLinks'>
+                    <span>Еще проекты:</span> 
+                    <ul>
+                        <li><a href='https://snstotti.github.io/starDB'>StarDB</a></li>
+                        <li><a href='https://snstotti.github.io/fun-box-test-app'>fun box test app</a></li>
+                        <li><a href='https://snstotti.github.io/test-app-adminka/'>Adminka</a></li>
+                        <li><a href='https://snstotti.github.io/to-do/'>To-do</a></li>
+                    </ul>
+            </div>
             <div className='footer__apiLink'><span>API:</span><a href='https://openweathermap.org/'><img src='https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png' alt='api'/></a></div>
         </div>
     )
