@@ -144,7 +144,7 @@ export const getDailyWeather = (lat:string , lon:string) => async(dispatch:any)=
     
     try{
         let response = await getWeatherDaily.getDailyData(lat, lon)
-        console.log(response);
+       
         
         let base = response.daily[0]
         dispatch(getDailyForecast(response.daily))
