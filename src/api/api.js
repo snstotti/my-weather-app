@@ -11,11 +11,11 @@ const LAT = `lat=`
 
 
 const instanceCurentWeather = Axios.create({
-    baseURL: `http://api.openweathermap.org/data/2.5/`,
+    baseURL: `https://api.openweathermap.org/data/2.5/`,
     responseType: "json"
 })
 const instanceIcon = Axios.create({
-    baseURL: `http://openweathermap.org/img/wn/`,
+    baseURL: `https://openweathermap.org/img/wn/`,
     responseType: "json"
 })
 

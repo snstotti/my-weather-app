@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './weatherHourly.scss';
 import {numTemp} from '../helpersFunc/helpersFunc'
 

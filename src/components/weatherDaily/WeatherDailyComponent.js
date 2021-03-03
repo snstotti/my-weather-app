@@ -54,7 +54,7 @@ const mapStateToProps = (state) => {
     extraDataDaily: state.weatherDailyReducer.extraDataDaily,
     wind: state.weatherDailyReducer.wind,
     iconDailyUrl: state.weatherDailyReducer.iconDailyUrl,
-    nameLocality: state.weatherReducer.locality,
+    nameLocality: state.weatherReducer.nameLocality,
   }
 }
 

@@ -16,7 +16,7 @@ const DailyForecast = ({dailyForecast}) => {
     let dat = setDayOfWeek(date)
    
    return(
-    <li key={date}>
+    <li key={date} className='hourly-block__list'>
         <p className='hourly-block__time'>
             {dat}
         </p>
@@ -40,9 +40,9 @@ const DailyForecast = ({dailyForecast}) => {
     return (
         <div className='weather-hourly' >
             <h2>Суточный прогноз:</h2>
-            <div className='hourly-block'>
+            <ul className='hourly-block'>
                 {dailyArr}
-            </div>
+            </ul>
             
             
         </div>

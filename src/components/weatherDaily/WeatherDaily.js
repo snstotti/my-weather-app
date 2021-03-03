@@ -17,9 +17,9 @@ const WeatherDaily = ({
     let castumWind = roseOfWind(deg)
     
 
-    let newHumidity = ExtraData('Вероятность Осадков', `${pop * 100}%`, 'Влажность', `${humidity}%` )
+    let newHumidity = ExtraData('Вероятность Осадков', `${Math.floor(pop*100)}%`, 'Влажность', `${humidity}%` )
     let castomTemp = ExtraData( `${numTemp(min)} / ${numTemp(max)}`,'','мин/макс ℃' )
-    let castomWind = ExtraData('Ветер',castumWind, 'Скорость ветра', speed)
+    let castomWind = ExtraData('Ветер',castumWind, 'Скорость ветра', `${Math.floor(speed)} м/с`)
 
 
     const weatherHelper = (title, temp, humidity, pop, ) => {

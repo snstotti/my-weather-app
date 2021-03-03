@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import WeatherCurrent from './WeatherCurrent';
 import CustomWrapper from '../helpersFunc/customWrapper/CustomWrapper';
-import './weatherCurrent.scss';
+
 
 
 

@@ -3,6 +3,7 @@ import sun_up from '../../image/sun_up.svg'
 import sun_down from '../../image/sun_down.svg'
 import React from 'react';
 import { numTemp } from '../helpersFunc/helpersFunc';
+import './weatherCurrent.scss';
 
 
 
@@ -27,7 +28,7 @@ const WeatherCurrent = ({detailedWeather,timeZone}) => {
 
     return (
         <div className='weather-current'>
-            <h2>Погода на сегодня:</h2>
+            <h2>Погода на сегодня</h2>
             <div>
                 
                 {paragraph}
