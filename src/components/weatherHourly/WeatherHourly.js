@@ -24,7 +24,7 @@ const WeatherHourly = ({hourlyData,timeZone}) => {
                 {clock}
             </p>
             <p className='hourly-block__icon'>
-               <img src={`http://openweathermap.org/img/wn/${icon}@2x.png`} alt='gg' />
+               <img src={`https://openweathermap.org/img/wn/${icon}@2x.png`} alt='gg' />
             </p>
             <p  className='hourly-block__temp'>
                 {temp}
